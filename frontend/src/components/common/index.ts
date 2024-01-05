@@ -5,6 +5,5 @@ import Input from "./Input";
 
 export {
     Button,
-    Input,
-   
+    Input,  
 }

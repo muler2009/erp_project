@@ -3,18 +3,17 @@ import { createBrowserRouter, createRoutesFromElements, Route } from 'react-rout
 import { Layout } from '../layout/Layout'
 import TestTS from '../public/TestTS'
 import Login from '../public/login/Login'
+import Dashboard from '../admin/layout/Dashboard'
 
 const Router = () => {
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route element={<Layout />}>
                 <Route path='/' element={<Login />} />
-                <Route path='/test' element={<h1>asdasdasd</h1>} />
+                <Route path='admin/*' element={<Dashboard />} />
             </Route>
         )
     )
-
-
     return router
 }
 
