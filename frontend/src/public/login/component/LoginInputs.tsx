@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Input, Button } from '../../../components/common'
 import { FaUserAlt, FaLock } from 'react-icons/fa'
 import useLogin from './useLogin'
-import logo from '../../../assets/images/logo.png'
+import erp from '../../../assets/images/erp.png'
 
 const LoginInputs = () => {
 
@@ -15,7 +15,7 @@ const LoginInputs = () => {
 
   return (
     <div className='flex-1 bg-[#013243] bg-opacity-5 flex justify-center items-center py-5'>
-      <div className='w-1/3 shadow-lg bg-[#fff] border-1 border-gray-200 pt-10 py-5 my-5'>
+      <div className='w-[35%] shadow-lg bg-[#fff] border-1 border-gray-200 pt-10 py-5 my-5'>
           {/* <div className='flex flex-col justify-center items-center'>
             <div className='flex justify-center items-center relative -mt-24 bg-white w-[25%] h-[20%] rounded-full'>
             <img src={logo} className='object-center object-cover' /> 
@@ -26,12 +26,12 @@ const LoginInputs = () => {
             </div>
           </div> */}
          <div className='py-5 border-t-[3px] border-b-[3px] border-t-green-900 border-opacity-50 border-b-[#013243] flex flex-col items-center'>
-            <div className=''>
-                <h1>Logo</h1>
+            <div className='flex justify-center'>
+              <img src={erp} className='object-center object-cover w-1/2' />
             </div>
             <div className=''>
-            <h6 className="pb-5 font-Oswald text-[45px] text-center">ERP 
-              <span className='text-[30px] ml-3 text-[#02e079]'>Software</span>
+            <h6 className="pb-5 font-Oswald text-[40px] text-center">Hybrid Investment 
+              <span className='text-[30px] ml-3 text-[#02e079]'>Group</span>
             </h6>
             </div>
          </div>

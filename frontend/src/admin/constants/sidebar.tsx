@@ -6,7 +6,7 @@ import * as BiIcons from 'react-icons/bi';
 import * as IoIcons from 'react-icons/io5';
 import * as VscIcon from 'react-icons/vsc';
 
-interface SideBar {
+export interface SideBar {
     label: string;
     path?: string; 
     icon: React.ReactElement;
@@ -28,51 +28,38 @@ export const sidebarItems: SideBar[] = [
         icon: <AiIcons.AiOutlineDashboard /> 
     },
     { 
-        label: "Account", 
+        label: "Management", 
         icon: <FaIcons.FaUserCog />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,    
         submenu: [
             {
-                path: 'user',
-                label: 'User',
+                path: 'user_management',
+                label: 'User Management',
                 icon: <FaIcons.FaRegUser />,
             },
             {
-                path: 'company',
-                label: 'Company',
+                path: 'role_management',
+                label: 'Role Management',
                 icon: <VscIcon.VscOrganization />,
             },
         ] 
     },
     { 
-        label: "e-Tender", 
-        icon: <AiIcons.AiFillAppstore />,
-        iconClosed: <RiIcons.RiArrowDownSFill />,
-        iconOpened: <RiIcons.RiArrowUpSFill />,    
-        submenu: [
-            {
-                path: 'tender_category',
-                label: 'Category Manager',
-                icon: <FaIcons.FaRegUser />,
-            },
-            {
-                path: 'tender_detail',
-                label: 'Open-TM ',
-                icon: <BiIcons.BiFolderOpen />,
-            },
-            {
-                path: 'bidder',
-                label: 'Bidder',
-                icon: <VscIcon.VscOrganization />,
-            },  
-        ] 
+        path: "tasks", 
+        label: "Tasks", 
+        icon: <FaIcons.FaUserCog /> 
     },
-   
+    { 
+        path: "reports", 
+        label: "Report", 
+        icon: <FaIcons.FaUserCog /> 
+    },
     {
-        path: 'e-hrm',
-        label: 'e-HRM',
+        path: "config", 
+        label: 'System Configuration',
         icon: <VscIcon.VscOrganization />,
+       
 
     },
 ]

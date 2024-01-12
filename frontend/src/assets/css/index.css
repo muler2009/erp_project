@@ -7,6 +7,13 @@
 
 /* defining the base css here  */
 
+::-webkit-scrollbar {
+  width: 0px;
+  cursor: pointer;
+  background: transparent;
+}
+
+
 @layer base {
     /* body{ @apply flex flex-col min-h-screen w-full overflow-scroll } */
     body {
