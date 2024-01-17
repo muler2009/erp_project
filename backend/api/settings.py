@@ -31,17 +31,22 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
+    'rest_framework.authtoken',
+    'account',
+   
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'api.urls'
 
@@ -67,11 +72,23 @@ WSGI_APPLICATION = 'api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'erp_db',
+        'USER': 'root',
+        'PASSWORD': 'root$password1',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    },
+    
 }
 
 
@@ -105,30 +122,21 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
-
 STATIC_URL = 'static/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Project specific configuration 
 
+AUTH_USER_MODEL = 'account.UserAccountModel'
+CORS_ORIGIN_WHITELIST = ["http://localhost:3001", ]
 
-# AUTH_USER_MODEL = 'users.UserAccount'
+# CORS_ALLOW_CREDENTIALS = True
 
-CORS_ORIGIN_WHITELIST = ["http://localhost:3000", ]
-
-CORS_ALLOW_CREDENTIALS = True
-
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', ]
-CSRF_HEADER_NAME = 'X-CSRFToken'
-CSRF_COOKIE_NAME = 'csrftoken'
+# CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', ]
+# CSRF_HEADER_NAME = 'X-CSRFToken'
+# CSRF_COOKIE_NAME = 'csrftoken'
 
 # Authentication and Permission framworks used for the project
 REST_FRAMEWORK = {
@@ -138,7 +146,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
-    'DEFAULT_EXCEPTION_HANDLER': 'hrm.exceptions',
+   
 }
 
 
@@ -150,6 +158,6 @@ SIMPLE_JWT = {
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
     "UPDATE_LAST_LOGIN": False,
-    "TOKEN_OBTAIN_SERIALIZER": "users.serializers.UserTokenObtainPairSerializer",
+    "TOKEN_OBTAIN_SERIALIZER": "account.serializers.authSerializer.UserTokenObtainPairSerializer",
 }
 

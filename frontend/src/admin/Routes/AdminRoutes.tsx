@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { useRoutes } from 'react-router-dom';
 import Dashboard from '../layout/Dashboard';
 import RoleLayout from '../submodules/managment/role/rolelayout/RoleLayout';
+import UserLayout from '../submodules/managment/user/userLayout/UserLayout';
+import UnderConstruction from '../components/reusable/UnderConstruction';
+import PermissionLayout from '../submodules/managment/permissions/PermissionLayout';
 
 interface Route {
     path: string;
@@ -15,9 +18,11 @@ interface RouteWithChildren {
 
 const AdminRoutes = () => {
   const routes: (Route | RouteWithChildren)[] = [
-    { path: '/admin',  element: <Dashboard /> },
-    { path: 'user_management',  element: <h1>User Management</h1> },
+    { path: '/',  element: <UnderConstruction /> },
+    { path: 'user_management',  element: <UserLayout /> },
     { path: 'role_management',  element: <RoleLayout /> },
+    { path: 'perm_management',  element: <PermissionLayout /> },
+
 
   ]
 

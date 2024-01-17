@@ -1,15 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { AuthState } from "./models";
 
-interface IntitalStateProps {
-    user?: null;
-    isAuthenticated: string | boolean;
-    token: string | null;
-    refresh: string | null;
-    csrftoken: null;
-    role?: string | null;
+interface RootState {
+    auth: AuthState
 }
 
-const initialState: IntitalStateProps = {
+const initialState: AuthState = {
     isAuthenticated: localStorage.getItem('isAuthenticated') || false,
     token: localStorage.getItem('token') || null,
     refresh: localStorage.getItem('refresh') || null,
@@ -36,16 +32,20 @@ export const authSlice = createSlice({
             state.refresh = null
             localStorage.removeItem("token")
             localStorage.removeItem("refresh")
-            //localStorage.removeItem("isAuthenticated", JSON.stringify(false))
+            localStorage.removeItem("isAuthenticated")
         }
        
         
     },
-    // extraReducers: (builder) => {
-    //     builder
-      
-    // }
+    extraReducers: (builder) => {  }
 })
+
+export const isAuthenticated = (state: RootState) => state.auth.isAuthenticated
+export const access = (state: RootState) => state.auth.token
+export const refresh = (state: RootState) => state.auth.refresh
+export const csrfToken = (state: RootState) => state.auth.csrftoken
+export const userRole = (state: RootState) => state.auth.role
+
 
 export const { setAuthData, clearAuthData } = authSlice.actions
 

@@ -6,10 +6,12 @@ import { Link } from 'react-router-dom'
 import { iconNotify, dropdownItems } from '../../constants/dropdown'
 import Tooltip from './Tooltip'
 import { Input } from '../../../components/common'
+import useLogout from '../../../auth/logout/useLogout'
 
 const Header = () => {
 
     const [drop, setDrop] = useState<boolean>(false)
+    const { onUserLogoutClicked } = useLogout()
 
 
   return (
@@ -47,9 +49,6 @@ const Header = () => {
                         })
                     }
                 </div>
-
-              
-
                 <div className='pr-2'>
                     <div className='flex space-x-3 items-center pl-7 bg-[#f1f1f1] cursor-pointer rounded-[2px] hover:bg-[#e6e6e6]' onClick={() => setDrop(prev => !prev)}>
                         <h1 className='text-[#333] font-Poppins text-sm'>
@@ -63,18 +62,18 @@ const Header = () => {
                             } 
                         </div>
 
-                        <div className='absolute  bg-white top-full mt-1 right-2 whitespace-nowrap w-[300px] z-50'>
+                        <div className='absolute  bg-white top-full mt-1 right-2 whitespace-nowrap w-[15%] z-50'>
                             {
                                 drop && (
                                     <div className='relative shadow-md text-black flex flex-col gap-1 pt-0 pb-5 border'>
-                                        <div className='font-Poppins text-sm flex justify-start bg-sky-50 py-2'>USER</div>
+                                       
                                         {
                                             dropdownItems?.map((dropdown, index) => {
                                                 if(dropdown.label === 'Logout'){
                                                     return (
-                                                        <div className='font-Poppins py-2 text-[13px] flex justify-start items-center space-x-3 px-3 hover:bg-[#f5f3f3]' key={index} >
-                                                        <span className='mr-2'>{dropdown.icon}</span>
-                                                        {dropdown.label}
+                                                        <div className='font-Poppins py-2 text-[13px] flex justify-start items-center space-x-3 px-3 hover:bg-[#f5f3f3]' key={index} onClick={onUserLogoutClicked}>
+                                                            <span className='mr-2'>{dropdown.icon}</span>
+                                                            {dropdown.label}
                                                         </div>
                                                     );
                                                 } else {
@@ -94,7 +93,6 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
         </nav>
     </header>

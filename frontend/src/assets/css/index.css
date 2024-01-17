@@ -50,20 +50,24 @@
     .btn { @apply flex items-center justify-center p-4 }
     .btn-sm { @apply h-[30px] text-sm font-Poppins font-normal }
     .btn-text { @apply text-center font-Quicksand text-[16px] font-normal text-black }
+
+    /*Input tag css*/
     .input-sm { @apply px-2 py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition
                     ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none }
     .input-md { @apply px-2 py-2 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-[3px] transition
-        ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:outline-none focus:border-green-900 }
-
+        ease-in-out m-0 focus:text-gray-700 focus:outline-none focus:bg-gray-50}
+    input[type="text"]:focus ~ .input-text,
+    input[type="password"]:focus ~ .input-password,
+    input[type="text"]:not(:placeholder-shown) ~ .input-text,
+    input[type="password"]:not(:placeholder-shown) ~ .input-password{
+        @apply text-[17px] font-Poppins transform -translate-y-5 -translate-x-2 scale-75 border-l-[1px] border-r-[1px] px-4 border-blue-600 text-blue-600;
+      }
+     /*select tag css*/  
     .select-sm {
       @apply w-full block px-4 py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none;
     }
     .select-md { @apply w-full px-2 py-2 pb-[0.4rem] text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition
       ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:outline-none duration-500}
-
-    .category { @apply h-[350px] text-[#4f5355]}
-    .tender { @apply w-full }
-    .company { @apply w-full h-[500px] shadow-[inset_0px_0px_0px_0px_#00000024]}
  
     /* table css */
     .table { @apply w-full font-Poppins text-[14px] bg-[#ffffff] m-0 cursor-pointer text-sm } 
@@ -73,86 +77,9 @@
     /* custom css for the table thead  */
     .table > thead > tr > th { @apply font-normal py-2 px-4 border-[1px] border-b-2 border-gray-300 text-left; }
     .table > thead { @apply border-t-[1px] border-b-[1px] py-2; }
-   
-    /* HRM styling*/
-    .hrm-branch-table { @apply h-[65vh] border-[1px] overflow-y-scroll}
-    .hrm-branch-table > .table > thead { @apply  border-b-[1px] bg-opacity-40}
-    .hrm-branch-table > .table > thead > tr > th { @apply border-none border-b-[1px] py-3 px-5 font-Rubik text-[#0b2239] font-semibold text-opacity-70}
-    .hrm-branch-table > .table > tbody  { @apply border-b-[1px] px-5}
-    .hrm-branch-table > .table > tbody > tr > td  { @apply border-none py-2}
-    .hrm-branch-table > .table > thead > tr > th:first-child { @apply w-[5%] whitespace-nowrap }
-
     
-
-    .hrm-designation-table { @apply h-[550px] px-3 overflow-y-scroll}
-    .hrm-designation-table > .table > thead { @apply  bg-opacity-40 border-[1px] }
-    .hrm-designation-table > .table > thead > tr > th { @apply border-none py-2 font-Rubik text-[#0b2239] font-semibold text-opacity-70}
-    .hrm-designation-table > .table > tbody  { @apply border-[1px]}
-    .hrm-designation-table > .table > tbody > tr > td  { @apply border-none py-2}
-    
-
-    .payroll { @apply h-[60vh]  bg-white overflow-y-scroll}
-    .payroll > .table > thead > tr > th { @apply bg-white text-center text-[13px] border border-gray-200 text-[#333] text-opacity-75 }
-    .payroll > .table > thead > tr:first-child > th:nth-child(2){@apply bg-[#e7f3ff]}
-    .payroll > .table > thead > tr:first-child > th:nth-child(3){@apply bg-[#cffeeb]}
-    .payroll > .table > thead > tr:first-child > th:nth-child(4){@apply bg-[#ffdad2]}
-    .payroll > .table > thead > tr:last-child > th:nth-child(3), 
-    .payroll > .table > thead > tr:last-child > th:nth-child(4),
-    .payroll > .table > thead > tr:last-child > th:nth-child(5) {@apply bg-[#f9fcff] text-[12px]}
-    .payroll > .table > thead > tr:last-child > th:nth-child(6) {@apply bg-[#f3fffa]}
-    .payroll > .table > thead > tr:last-child > th:nth-child(6) {@apply bg-[#f3fffa]}
-    .payroll > .table > thead > tr:last-child > th:nth-child(7) {@apply bg-[#fff6f4]}
-
-    .payroll > .table > tbody > tr > td {@apply border py-2 text-[#333] text-[14px] text-opacity-90}
-    .payroll > .table > tbody > tr:hover {@apply bg-black}
-    
-    .payroll .table-striped > tbody > tr:nth-of-type(odd) { @apply bg-white }
-    .payroll > .table-striped > tbody > tr:nth-of-type(even) { @apply bg-[#fff] }
-
-    .salary_component, .tax, .strucutre { @apply bg-white overflow-y-scroll border } 
-    .salary_component > .table > thead > tr,
-    .tax > .table > thead > tr{
-       @apply relative
-    }
-    .salary_component > .table > tbody > tr { @apply border-b-[1px]}
-    .salary_component > .table > tbody > tr > td { @apply border-none border-b-[1px] py-2 text-[#333] text-opacity-40 text-[13px]}
-    .tax > .table > tbody > tr > td { @apply border-b-[1px] py-2}
-  
-
-    .salary_component > .table > thead > tr > th { @apply border-none py-3 px-5 font-Rubik leading-[1.2] text-[#0b2239] text-opacity-70 bg-gray-50 text-[13px]}
-    .tax > .table > thead > tr > th  { @apply border-none py-3 px-5 font-Rubik tracking-wide leading-[1.2] text-[#0b2239] font-bold text-opacity-70 bg-[#f6f6f6]}
-    .salary_component > .table > thead > tr > th:last-child { @apply w-[3%]}
-    .salary_component > .table > tbody > tr > td:nth-child(2) {@apply px-0}
-    .salary_component > .table > tfoot > tr > td {@apply py-2}
-
-    .salary_component .table-striped > tbody > tr:nth-of-type(odd), 
-    .salary_component > .table-striped > tbody > tr:nth-of-type(even) { @apply bg-white }
-    
-
-    .tax .table-striped > tbody > tr:nth-of-type(odd) { @apply bg-white }
-    .tax > .table-striped > tbody > tr:nth-of-type(even) { @apply bg-[#f6f6f6] }
-    
-    /* .strucutre { @apply h-[65vh] border-[1px] overflow-y-scroll} */
-    .strucutre > .table > thead { @apply  border-b-[1px] bg-opacity-40}
-    .strucutre > .table > thead > tr > th { @apply border-none py-3 px-5 font-Rubik leading-[1.2] text-[#0b2239] text-opacity-70 bg-gray-50 text-[13px]}
-    .strucutre > .table > tbody > tr > td { @apply border-none border-b-[1px] py-2 text-[#333] text-opacity-40 text-[13px]}
-    .strucutre > .table > tbody  { @apply border-b-[1px] px-5}
-    .strucutre > .table > tbody  { @apply border-b-[1px] px-5}
-    .strucutre > .table > thead > tr > th:last-child { @apply w-[3%]}
-
-    .applicant_table > .table > thead { @apply  border-b-[1px] bg-opacity-40}
-    .applicant_table > .table > thead > tr > th { @apply border-none py-3 px-5 font-Rubik leading-[1.2] text-[#0b2239] text-opacity-70 bg-gray-50 text-[13px]}
-    .applicant_table > .table > thead > tr > th:first-child,
-    .applicant_table > .table > tbody > tr > td:first-child { @apply w-[3%] px-0}
-    .applicant_table > .table > tbody > tr > td { @apply border-none border-b-[1px] py-2 text-[#333] text-opacity-40 text-[13px]}
-    .applicant_table > .table > tbody > tr  { @apply border-b-[1px] px-5}
-    .applicant_table > .table > tbody  { @apply border-b-[1px] px-5}
-  
-    .applicant_table .table-striped > tbody > tr:nth-of-type(odd),
-    .applicant_table > .table-striped > tbody > tr:nth-of-type(even) { @apply bg-white }
-
      /* end of the custom css for the table tbody  */
-    .table > :not(caption) > * > * {
+     .table > :not(caption) > * > * {
       padding: 0.5rem 0.5rem;
       background-color: var(--bs-table-bg);
       border-bottom-width: 1px;
@@ -165,13 +92,29 @@
    
     .table-striped > tbody > tr:nth-of-type(odd) { @apply bg-[#eee] }
     .table-striped > tbody > tr:nth-of-type(even) { @apply bg-white }
+   
+    /* Admin styling*/
+    
+    .user {@apply h-[300px] } 
+    .user > .table > thead { @apply  border-b-[1px] bg-opacity-40}
+    .user > .table > thead > tr > th { @apply border-none py-3 px-5 font-Rubik leading-[1.2] text-[#0b2239] text-opacity-70 bg-gray-50 text-[13px]}
+    .user > .table > tbody > tr > td { @apply border-none border-b-[1px] py-2 text-[#333] text-opacity-40 text-[13px]}
+    .user > .table > tbody  { @apply border-b-[1px] px-5}
+    .user > .table > tbody  { @apply border-b-[1px] px-5}
+    .user > .table > thead > tr > th:last-child { @apply w-[3%]}
 
-    input[type="text"]:focus ~ .input-text,
-    input[type="password"]:focus ~ .input-password,
-    input[type="text"]:not(:placeholder-shown) ~ .input-text,
-    input[type="password"]:not(:placeholder-shown) ~ .input-password{
-        @apply text-[17px] font-Poppins transform -translate-y-5 -translate-x-2 scale-75 border-l-[1px] border-r-[1px] px-4 border-blue-600 text-blue-600;
-    }
+    .role > .table > thead { @apply  border-b-[1px] bg-opacity-40}
+
+    .role > .table > thead > tr > th { @apply border-none py-3 px-5 font-Rubik leading-[1.2] text-[#0b2239] bg-gray-50 text-[13.5px]}
+    .role > .table > tbody > tr > td { @apply py-3 text-[#333] text-opacity-40 text-[13px]}
+    .role > .table > tbody > tr:hover {@apply hover:bg-gray-50 }
+    .role > .table > thead > tr > th:last-child { @apply w-[3%]}
+    .role .table-striped > tbody > tr:nth-of-type(odd), 
+    .role > .table-striped > tbody > tr:nth-of-type(even) { @apply bg-white }
+
+
+
+
   .tooltip:hover .tooltip-text {
     visibility: visible;
     opacity: 1;

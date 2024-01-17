@@ -1,11 +1,9 @@
 import React from 'react'
-import Header from './component/Header'
-import LoginInputs from './component/LoginInputs'
+import LoginInputs from './LoginInputs'
 
 const Login = () => {
   return (
-    <div className='w-screen h-screen flex flex-col'>
-      
+    <div className='w-screen h-screen flex flex-col'> 
       <LoginInputs />
     </div>
   )

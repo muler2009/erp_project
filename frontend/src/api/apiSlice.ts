@@ -1,8 +1,14 @@
-import {createApi, fetchBaseQuery, BaseQueryFn } from '@reduxjs/toolkit/query/react'
+import {createApi, fetchBaseQuery, BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query/react'
 import { BASE_URL, API_TAGS } from '../config/config'
 import { setAuthData, clearAuthData } from './auth'
 import { RootState } from '../store/store';
-import { useDispatch } from 'react-redux';
+
+interface ArgsProps {
+  url: string;
+  method: string;
+  body?: unknown;
+}
+
 
 
 // creating a type for tag defined
@@ -24,17 +30,18 @@ const baseQuery = fetchBaseQuery({
     },
 })
 
-const baseQueryForReauthentication: BaseQueryFn<any, any, any> = async (args, api, extraOptions) => {
+
+  
+const baseQueryForReauthentication: BaseQueryFn<string | FetchArgs , unknown, FetchBaseQueryError> = async (args, api, extraOptions) => {
     let resultFromBaseQuery = await baseQuery(args, api, extraOptions);
     const user = (<RootState>api.getState()).auth.user;
     const access = (<RootState>api.getState()).auth.token;
    
-
     // cheking if the token is expired
     if (resultFromBaseQuery?.error?.status === 401) {
         // send a refresh to get access token
         const refreshResult = await baseQuery(
-          "users/token/refresh/",
+          "account/token/refresh/",
           api,
           extraOptions
         );

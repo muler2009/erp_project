@@ -43,6 +43,11 @@ export const sidebarItems: SideBar[] = [
                 label: 'Role Management',
                 icon: <VscIcon.VscOrganization />,
             },
+            {
+                path: 'perm_management',
+                label: 'Permission System',
+                icon: <VscIcon.VscOrganization />,
+            },
         ] 
     },
     { 

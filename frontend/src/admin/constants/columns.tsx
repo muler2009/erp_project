@@ -15,13 +15,14 @@ export const columns = [
     columnHelper.accessor(row => row.location, {
         id: 'Location',
         cell: info => info.getValue(),
+        enableSorting: false,
     }),
     columnHelper.accessor(row => row.address, {
         id: 'Address',
         cell: info => {
             const value = info.getValue()
             const value2 = info.row
-            console.log(value2)
+            
             return(
                 <h1 className='text-red-500'>
                     {info.getValue().toUpperCase()}
@@ -43,7 +44,8 @@ export const columns = [
 
                 </div>
             )
-        }
+        },
+        enableSorting: false
     }),
 ]
 

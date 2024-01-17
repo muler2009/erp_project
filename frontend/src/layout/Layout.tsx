@@ -1,4 +1,6 @@
 import React from 'react'
+import '../assets/css/custom.css'
+
 import { Outlet } from 'react-router-dom'
 
 

@@ -1,90 +1,80 @@
-import React from 'react'
-import {getCoreRowModel, useReactTable, flexRender} from '@tanstack/react-table'
-import { data } from '../../constants/columns'
-import { columns, ROLE_COLUMN } from '../../constants/columns'
-import { useTable, usePagination, Row, TableInstance, TableState, Column } from 'react-table'
-
-// interface TableTypeWorkaround<T extends object> extends TableInstance<T>, MyTableState {
-//   gotoPage: (index: number) => void;
-//   page: T[];
-// }
-
-// interface MyTableState extends TableState<TableData> {
-//   pageIndex: number;
-//   pageSize: number;
-// }
-
-interface CustomProps extends TableInstance {
-  page: any;
-  
-}
-
-interface CustomState extends TableState {
-  pageIndex?: number;
-  pageSize?: number;
-}
+import {getCoreRowModel, useReactTable, flexRender, ColumnDef,  getFilteredRowModel} from '@tanstack/react-table'
+import { useState } from 'react';
+import Filters from './Search';
+import Search from './Search';
 
 
 interface TableProps {
   columns: any[];
   data: any[] ;
-  actions: (hooks: any) => unknown 
+  actions?: (hooks: any) => ColumnDef<any>[]
 }
 
 const RoleTableStructure = ({columns, data, actions}: TableProps) => {
-    // const table = useReactTable({
-    //     data,
-    //     columns,
-    //     getCoreRowModel: getCoreRowModel(),
-    // })
+  const [globalFilter, setGlobalFilter] = useState<string | number>('')
 
-    const {
-      getTableProps,
-      getTableBodyProps,
-      headerGroups,
-      page,
-      prepareRow,
-      //state: { globalFilter, selectedRowIds, pageIndex, pageSize },
-      
-     
-    } =useTable({ 
-        columns, data, 
-        // initialState: {
-        //   pageIndex : 0,
-        //   pageSize : 2
-        // }
-    }, usePagination) as CustomProps;
-
-  
+    const table = useReactTable({
+        data,
+        columns,
+        state: {
+          globalFilter
+        },
+        getCoreRowModel: getCoreRowModel(),
+        getFilteredRowModel: getFilteredRowModel(),
+        onGlobalFilterChange: setGlobalFilter,
+      },      
+    )  
     return (
-     
-        <table className={`table table-sm table-border table-striped text-left mb-5 text-[14px]`} {...getTableProps()}>
-          <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {page.map((row :any) => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map((cell: any) => (
-                    <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                  ))}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      
-      
+      <div className='flex flex-col gap-5 w-[75%]'>
+        <Search 
+          globalFilter={globalFilter}
+          setGlobalFilter={setGlobalFilter}
+        />
+        {/* <Filters /> */}
+        <div className='role'>
+          <table className={`table table-sm table-border table-striped text-left mb-5 text-[14px] `}>
+            <thead>
+              {table.getHeaderGroups().map((headerGroup) => {
+                return (
+                  <tr key={headerGroup.id}>
+                    {headerGroup.headers.map((header) => {
+                      return (
+                        <th id={header.id}>
+                          {" "}
+                          {header.isPlaceholder
+                            ? null
+                            : flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )}
+                        </th>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+            </thead>
+            <tbody>
+              {table.getRowModel().rows.map((row) => {
+                return (
+                  <tr key={row.id}>
+                    {row.getVisibleCells().map((cell) => {
+                      return (
+                        <td key={cell.id}>
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
     );
-  };
+  }
+  
   
 
 export default RoleTableStructure
