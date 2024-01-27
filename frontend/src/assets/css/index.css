@@ -60,7 +60,7 @@
     input[type="password"]:focus ~ .input-password,
     input[type="text"]:not(:placeholder-shown) ~ .input-text,
     input[type="password"]:not(:placeholder-shown) ~ .input-password{
-        @apply text-[17px] font-Poppins transform -translate-y-5 -translate-x-2 scale-75 border-l-[1px] border-r-[1px] px-4 border-blue-600 text-blue-600;
+        @apply text-[17px] font-Poppins transform -translate-y-5 -translate-x-2 scale-75 border-l-[1px] border-r-[1px] px-4 border-inherit border-green-600 ;
       }
      /*select tag css*/  
     .select-sm {
@@ -97,11 +97,12 @@
     
     .user {@apply h-[300px] } 
     .user > .table > thead { @apply  border-b-[1px] bg-opacity-40}
-    .user > .table > thead > tr > th { @apply border-none py-3 px-5 font-Rubik leading-[1.2] text-[#0b2239] text-opacity-70 bg-gray-50 text-[13px]}
-    .user > .table > tbody > tr > td { @apply border-none border-b-[1px] py-2 text-[#333] text-opacity-40 text-[13px]}
+    .user > .table > thead > tr > th { @apply border-none py-3 px-5 font-Poppins font-semibold tracking-wide leading-[1.2] text-[#0b2239] text-opacity-70 bg-gray-50 text-[13px]}
+    .user > .table > tbody > tr > td { @apply py-3 text-[#333] text-opacity-40 text-[13px] px-5}
+    .user > .table > tbody > tr:hover {@apply hover:bg-gray-50 }
     .user > .table > tbody  { @apply border-b-[1px] px-5}
     .user > .table > tbody  { @apply border-b-[1px] px-5}
-    .user > .table > thead > tr > th:last-child { @apply w-[3%]}
+    /* .user > .table > thead > tr > th:last-child { @apply w-[3%]} */
 
     .role > .table > thead { @apply  border-b-[1px] bg-opacity-40}
 

@@ -1,6 +1,6 @@
 import { erpAPISlice } from "../../api/apiSlice";
 import { API_TAGS } from "../../config/config";
-import { LoginRequiredData, AuthResponse } from "../../admin/models/login.model";
+import { LoginRequiredData, AuthResponse } from "../../iam/models/login.model";
 
 
 const loginAPI = erpAPISlice.injectEndpoints({

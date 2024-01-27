@@ -14,8 +14,8 @@ const LoginInputs = () => {
 
   return (
     <div className='flex-1 bg-[#013243] bg-opacity-5 flex justify-center items-center py-5'>
-      <div className='w-[35%] shadow-lg bg-[#fff] border-1 border-gray-200 pt-10 py-5 my-5'>
-          <div className='py-5 border-t-[3px] border-b-[3px] border-t-green-900 border-opacity-50 border-b-[#013243] flex flex-col items-center'>
+      <div className='w-[30%] shadow-lg bg-[#fff]  border-gray-200 pt-10 py-5 my-5'>
+          <div className='py-5 border-b flex flex-col items-center border-1 px-5'>
             <div className='flex justify-center'>
               <img src={erp} className='object-center object-cover w-1/2' />
             </div>
@@ -29,19 +29,19 @@ const LoginInputs = () => {
           <form className='flex flex-col gap-6 pb-10 w-[80%] mx-auto' onSubmit={(event) => event.preventDefault()}>
             {/* Username Field */}
             <div className='mt-10 flex flex-col gap-5 px-10'>
-              <div className="relative font-Poppins ">
+              <div className="relative font-Poppins">
                 <label className='relative cursor-pointer py-2 flex flex-row items-center'>
                     <input 
                       id='username'
                       type='text' 
                       name='username'
                       placeholder='username'
-                      className='px-6 pt-4 text-black input-md border-opacity-50 outline-none placeholder-gray-300 placeholder-opacity-0 transition duration-200 focus:border-blue-600'  
+                      className='px-6 pt-4 text-black input-md border-opacity-50 focus:outline-none focus:border-green-600 focus:bg-inherit placeholder-gray-300 placeholder-opacity-0 transition duration-200 focus:border-inherit'  
                       value={loginData.username}
                       onChange={handleInputLoginChanges}
                     />
-                    <FaUserAlt color="gray" className="absolute right-2 mr-3"/>
-                    <span className='text-black text-[15px] bg-white text-opacity-80 absolute left-5 top-5 px-1 transition duration-200 input-password input-text'>Username</span>
+                    <FaUserAlt color="gray" className="absolute right-2 mr-3 "/>
+                    <span className='text-black text-[15px] bg-white text-opacity-80 absolute left-5 top-5 px-1 transition duration-200 input-text'>Username</span>
                 </label>  
               </div>
               {/* Password Field */}
@@ -52,12 +52,12 @@ const LoginInputs = () => {
                       type='password' 
                       name='password'
                       placeholder='password'
-                      className='px-6 pt-4 text-black input-md border-opacity-50 outline-none focus:border-blue-500 placeholder-gray-300 placeholder-opacity-0 transition duration-200'  
+                      className='px-6 pt-4 text-black input-md border-opacity-50 focus:outline-none focus:border-green-600 focus:bg-inherit placeholder-gray-300 placeholder-opacity-0 transition duration-200 focus:border-inherit'    
                       value={loginData.password}
                       onChange={handleInputLoginChanges} 
                     />
                     <FaLock color="gray" className="absolute right-2 mr-3"/>
-                    <span className='text-black text-[15px] bg-white text-opacity-80 absolute left-5 top-5 px-1 transition duration-200 input-password input-text'>Password</span>
+                    <span className='text-black text-[15px] bg-white text-opacity-80 absolute left-5 top-5 px-1 transition duration-200 input-password'>Password</span>
                 </label>  
               </div>
             </div>

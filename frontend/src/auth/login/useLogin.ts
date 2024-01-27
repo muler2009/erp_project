@@ -1,7 +1,7 @@
 import {ChangeEvent, useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { LoginRequiredData } from '../../admin/models/login.model'
+import { LoginRequiredData } from '../../iam/models/login.model'
 import { setAuthData, clearAuthData } from '../../api/auth'
 import { useUserLoginMutation } from './loginAPI'
 
@@ -61,7 +61,7 @@ const useLogin = () => {
           }
       ));
 
-      navigate('/admin')
+      navigate('/iam')
       //dispatch(setRole(role));
       
       // if (role === 'manager' || role === 'Staff'){

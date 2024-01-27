@@ -32,7 +32,7 @@ const baseQuery = fetchBaseQuery({
 
 
   
-const baseQueryForReauthentication: BaseQueryFn<string | FetchArgs , unknown, FetchBaseQueryError> = async (args, api, extraOptions) => {
+const baseQueryForReauthentication: BaseQueryFn<string | FetchArgs , any, FetchBaseQueryError> = async (args, api, extraOptions) => {
     let resultFromBaseQuery = await baseQuery(args, api, extraOptions);
     const user = (<RootState>api.getState()).auth.user;
     const access = (<RootState>api.getState()).auth.token;

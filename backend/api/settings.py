@@ -130,7 +130,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Project specific configuration 
 
 AUTH_USER_MODEL = 'account.UserAccountModel'
-CORS_ORIGIN_WHITELIST = ["http://localhost:3001", ]
+CORS_ORIGIN_WHITELIST = ["http://localhost:3000", ]
 
 # CORS_ALLOW_CREDENTIALS = True
 
@@ -148,8 +148,6 @@ REST_FRAMEWORK = {
     ],
    
 }
-
-
 
 # Project Configuration for JWT Authentication
 SIMPLE_JWT = {

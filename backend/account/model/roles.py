@@ -1,10 +1,14 @@
 import uuid
+from django.utils import timezone
 from django.db import models
 
 
 class RoleModel(models.Model):
     role_id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False )
     role_name = models.CharField(verbose_name="Role", unique=True, max_length=50)
+    role_created_at = models.DateTimeField(auto_now_add=True)
+    role_modified_at = models.DateTimeField(auto_now=True)
+ 
 
     class Meta:
         db_table = "Role" 
