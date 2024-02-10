@@ -16,36 +16,51 @@ export const userTabLink: UserTabNavigationDef[] = [
     },
     { 
       tabContent: <h1>Test</h1>,
-      label: "Groups",
+      label: "Trash",
       total: true
-    },
-    { 
-      tabContent: <h1>Test</h1>,
-      label: "Teams",
-      total: true
-    },
+    }
+    
 ] 
 
 export const userManagemenu: UserDashboardProps[] = [
   {
     label: "Actions",
     icon: <IoIcons.IoIosAdd size={18}/>,
+   
     dropdownItems: [
-      { label: "New identity",  onClick: () => console.log("Test"), icon: <RiIcons.RiUserAddFill size={15}/> },
-      { label: "Action 2",  onClick: () => console.log("Test")  },
+      { label: "New identity"},
+      { label: "Action 2"  },
       // Add more dropdown items as needed
     ]
   },
   {
     label: "Notifications",
     icon: <IoIcons.IoIosAdd size={18}/>,
-    // dropdownItems: [
-    //   { label: "Notification 1", onClick: () => console.log("Notification 1 clicked") },
-    //   { label: "Notification 2", onClick: () => console.log("Notification 2 clicked") },
-    //   // Add more dropdown items as needed
-    // ]
+   
   },
 ];
+
+export const identityProps: UserDashboardProps[] = [
+  {
+    label: "User",
+    icon : <IoIcons.IoIosAdd size={18}/>,
+    abbrevation: "SingleNewID",
+   
+  },
+  {
+    label: "Multiple User",
+    icon : <IoIcons.IoIosAdd size={18}/>,
+    abbrevation: "MultiNewID",
+   
+  },
+  {
+    label: "Notifications",
+    icon: <IoIcons.IoIosAdd size={18}/>,
+    abbrevation: "Not",
+   
+  },
+];
+
 
 
 export const userDropDown: UserDropDownDef[] = [

@@ -4,18 +4,19 @@ export interface ModalProps {
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
     isOpen: boolean;
     title: string;
+   
   }
 export interface DropDowns{
   label: string;
   icon?: React.ReactElement;
-  onClick: any
+  onClick?: any
 }
 
-export interface UserDashboardProps {
+export interface UserDashboardProps{
   label: string;
   icon?: React.ReactElement;
-  dropdownItems?: DropDowns[];
-  
+  abbrevation?: string; 
+  dropdownItems?: DropDowns[]; 
 }
 
   export interface UserAccountColumnsInterface {

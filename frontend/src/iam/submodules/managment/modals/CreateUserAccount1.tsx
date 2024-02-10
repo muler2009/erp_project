@@ -7,7 +7,7 @@ import Select from '../../../components/reusable/Select';
 import { useGetRolesQuery } from '../../../features/roleAPI';
 import useUserAccount from '../../../hooks/useUserAccount';
 
-const CreateUserAccount = ({setIsOpen, isOpen, title} : ModalProps) => {
+const CreateUserAccount1 = ({setIsOpen, isOpen, title} : ModalProps) => {
 
     const {data, isSuccess, isLoading} = useGetRolesQuery()
     const userRoles = data || []
@@ -128,5 +128,5 @@ const CreateUserAccount = ({setIsOpen, isOpen, title} : ModalProps) => {
       ) : null;
 }
 
-export default CreateUserAccount
+export default CreateUserAccount1
 

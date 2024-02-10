@@ -1,23 +1,17 @@
-import React,{ useState, useCallback } from 'react'
+import React, {useState, useCallback} from 'react'
 import { Link } from 'react-router-dom'
-import { sidebarItems } from '../../constants/sidebar'
-import { Submenu } from '.'
+import Tooltip from './Tooltip'
 import * as AiIcons from 'react-icons/ai'
 import * as BiIcons from 'react-icons/bi'
-import Tooltip from './Tooltip'
-import TreeView from './TreeView'
-import menus from '../../constants/data'
+import { sidebarItems } from '../../constants/sidebar'
+import SideMenuList from './SideMenuList'
 
-const SideBar = () => {
 
-const [active, setActive] = useState(null)
-const [controller, setController] = useState<boolean>(true) // a temporary state for handling the collapsable menu
-const handleActiveLink = useCallback((index : any) => {
-    setActive(index)
-  }, [])
+const SidebarMenu = () => {
 
-const handleOpenCloseSideBar = useCallback(() => {setController(prev => ! prev)}, [controller])
-   
+    const [active, setActive] = useState(null)
+    const [controller, setController] = useState<boolean>(true) // a temporary state for handling the collapsable menu
+    const handleOpenCloseSideBar = useCallback(() => {setController(prev => ! prev)}, [controller])
   return (
     <div className={`font-Poppins flex flex-col h-[96vh] shadow-md z-0 cursor-pointer overflow-x-hidden ${!controller ? 'w-[70px] bg-[#f9f9f9] text-white' : 'w-[25rem] bg-[#f9f9f9]'}`}>
         <div className={`relative`}>
@@ -45,11 +39,9 @@ const handleOpenCloseSideBar = useCallback(() => {setController(prev => ! prev)}
             </div>
         
             <div className='flex flex-col py-4 text-black pl-3 mt-10 '>
-                {
-                    sidebarItems?.map((sideParent, index) => {
-                        return <Submenu key={index} sideParent={sideParent} controller={controller} handleActiveLink={handleActiveLink} />
-                    })
-                }
+                
+                <SideMenuList sidebarItems={sidebarItems} controller={controller} />
+                
                 {/* <TreeView menu={menus} /> */}
             </div>
         </div>
@@ -57,19 +49,4 @@ const handleOpenCloseSideBar = useCallback(() => {setController(prev => ! prev)}
   )
 }
 
-export default SideBar
-
-{/* <div className="flex flex-col">
-{
-    account?.map((account, index) => {
-        return(
-            <div className="relative px-3" key={index}>
-                <Link className={`flex items-center justify-start space-x-2 py-3 px-5`} to={account.path} >
-                    <div size={20}>{account.icon}</div>
-                    <div className={`duration-500 font-Poppins text-sm ${!controller && 'opacity-0 translate-x-28 overflow-hidden'}`}>{account.label}</div>
-                </Link>
-            </div>
-        )
-    })
-}
-</div>    */}
+export default SidebarMenu

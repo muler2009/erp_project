@@ -1,22 +1,12 @@
 import React, {useState} from 'react'
 import { userTabLink } from '../../constants/usertabLink';
 
-
-
-
 const UserTabNavigation = () => {
   
     const [activeTabIndex, setActiveTabIndex] = useState<number>(0);  
-  
-    const handleDropdownItemClick = (index: number): void => {
-      setActiveTabIndex(index);
-      // setDropItems(false)
-      //setIsOpenModal(true);
-    }
-  
-  const changeTabIndex = (index: number): void => {
-      setActiveTabIndex(index)
-    }
+    const changeTabIndex = (index: number): void => {
+        setActiveTabIndex(index)
+      }
   
     return ( 
       <>
@@ -40,16 +30,13 @@ const UserTabNavigation = () => {
                       </div>
                   ))
               }
-            </div>
-  
-           
+            </div>  
+                        
           </div>
           <div className="mx-1 bg-white p-5">
             {userTabLink[activeTabIndex].tabContent}
           </div>     
         </div>
-
-       
       </>      
     )
 }

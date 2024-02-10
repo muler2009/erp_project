@@ -1,21 +1,28 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { SideBar } from "../../constants/sidebar";
 
 interface SidemenuProps {
   sideParent: SideBar;
   controller: boolean;
+  handleActiveLink: (index: any) => void
 }
 
 
 const Submenu = (props: SidemenuProps) => {
   
     const { sideParent, controller } = props
+    const [active, setActive] = useState(null)
     const [subnav, setSubnav] = useState<boolean>(false);
     const showSubnav = () => setSubnav(!subnav);
+
+    const handleActiveLink = useCallback((index : any) => {
+      setActive(index)
+    }, [active])
+  
   
     return(
-      <div className='flex flex-col text-[13px] font-Poppins '>
+      <div className='flex flex-col text-[13px] font-Poppins' >
         <Link 
           to={sideParent.path || ""} 
           onClick={sideParent.submenu && showSubnav} 
@@ -33,16 +40,14 @@ const Submenu = (props: SidemenuProps) => {
                   : null}
                 </div>
         </Link>
-        <div className="pl-6 ">
+        <div className="pl-6" onClick={handleActiveLink}>
           {
             subnav && 
               sideParent.submenu?.map((item, index) => {
                 return(
-                  <Link to={item.path} key={index} className={`pl-5 text-[#333] text-opacity-70 flex items-center space-x-3 hover:rounded-none focus:border-r-[5px] hover:bg-[#ebecf0] focus:bg-[#eee]  focus:border-green-700 `}>
+                  <Link to={item.path} key={index} className={`pl-5 text-[#333] text-opacity-70 flex items-center space-x-3 hover:rounded-none focus:border-r-[5px] hover:bg-[#ebecf0] focus:bg-[#eee]  focus:border-green-700 ${active === index ? 'text-green-900 font-bold': ''} `} >
                     {item.icon}
-                    <h1 className={`py-2 text-[13px] duration-500 font-Poppins  ${!controller && 'opacity-0 translate-x-28 overflow-hidden'}`}>
-                    {item.label}
-                    </h1>
+                    <h1 className={`py-2 text-[13px] duration-500 font-Poppins  ${!controller && 'opacity-0 translate-x-28 overflow-hidden'}`}>{item.label}</h1>
                   </Link>
                 )
               }) 
