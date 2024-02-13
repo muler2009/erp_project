@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import UserTabNavigation from '../views/UserTabNavigation'
 import CreateUserAccount from '../../modals/CreateUserAccount1'
 import * as LuIcons from 'react-icons/lu'
-import { identityProps, userDropDown, userManagemenu } from '../../constants/usertabLink'
+import { identityProps, userDropDown, userManagemenu } from '../../constants/nav-links/usertabLink'
 import * as IoIcons  from "react-icons/io5";
 import {CreateNewAccount, CreateUserAccount1} from '../../modals'
 

@@ -10,9 +10,11 @@ class CreateGroupSerializer(serializers.ModelSerializer):
         }
         
     def create(self, validated_data):
-        super().create(validated_data)
+        # super().create(validated_data)
         group = GroupModel.objects.create(
-            custom_group_name=validated_data['custom_group_name']
+            custom_group_abbreviation = validated_data['custom_group_abbreviation'],
+            custom_group_name=validated_data['custom_group_name'],
+            has_sub_group= validated_data['has_sub_group']
         )
         
         return group

@@ -1,10 +1,10 @@
 import { createColumnHelper, CellContext } from '@tanstack/react-table';
 import {AiOutlineTranslation} from 'react-icons/ai'
-import { RoleInterface } from '../../../models/role.models';
+import { RoleInterface } from '../../../../models/role.models';
 import * as CiIcons from "react-icons/ci";
 import * as BsIcons from 'react-icons/bs'
 import { useState } from 'react';
-import CreateRoles from '../modals/CreateRoles';
+import CreateRoles from '../../modals/CreateRoles';
 
  
 const columnHelper = createColumnHelper<RoleInterface>()

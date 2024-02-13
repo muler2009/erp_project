@@ -1,6 +1,6 @@
 import { FaUsb } from "react-icons/fa";
-import { RoleDropDownDef, RoleTabNavigation } from "../../../models/management.model";
-import RoleList from "../role/views/RoleList";
+import { RoleDropDownDef, RoleTabNavigation } from "../../../../models/management.model";
+import RoleList from "../../role/views/RoleList";
 import * as IoIcons from "react-icons/io5";
 
 export const roleTabLink: RoleTabNavigation[] = [

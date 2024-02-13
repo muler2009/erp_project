@@ -113,6 +113,13 @@
     .role .table-striped > tbody > tr:nth-of-type(odd), 
     .role > .table-striped > tbody > tr:nth-of-type(even) { @apply bg-white }
 
+    .group > .table > thead > tr > th { @apply border-none py-3 font-Rubik leading-[1.2] text-[#0b2239] bg-gray-50 text-[13.5px]}
+    .group > .table > tbody > tr > td { @apply py-3 px-5 text-[#333] text-opacity-40 text-[13px]}
+    .group > .table > tbody > tr:hover {@apply hover:bg-gray-50 }
+    .group > .table > thead > tr > th:first-child{@apply w-[3%]}
+    .group > .table > tbody > tr > td:first-child {@apply border-r pr-4}
+    .group .table-striped > tbody > tr:nth-of-type(odd), 
+    .group > .table-striped > tbody > tr:nth-of-type(even) { @apply bg-white }
 
 
 

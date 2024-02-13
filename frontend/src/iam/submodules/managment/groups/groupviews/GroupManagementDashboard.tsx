@@ -2,12 +2,13 @@ import React, { useCallback, useState } from 'react'
 
 import CreateUserAccount from '../../modals/CreateUserAccount1'
 import * as LuIcons from 'react-icons/lu'
-import { identityProps, userDropDown, userManagemenu } from '../../constants/usertabLink'
+import { identityProps, userDropDown, userManagemenu } from '../../constants/nav-links/usertabLink'
 import * as IoIcons  from "react-icons/io5";
 import {CreateNewAccount, CreateUserAccount1} from '../../modals'
 import { groupsDropdown } from '../../constants/groups';
 import UserList from '../../user/views/UserList';
 import CreateGroups from '../../modals/CreateGroups';
+import GroupList from './GroupList';
 
 const GroupManagementDashboard = () => {
  
@@ -60,16 +61,37 @@ const GroupManagementDashboard = () => {
                   )
                 }     
               </div>
-              {/* <div className={`flex justify-start items-center px-5 py-1.5 bg-[#e6e6e6] bg-opacity-30 text-[14px] font-Poppins`}>
-                Actions
-              </div> */}
-
             </div>
-
           </div>      
         </div>
-        <div className='bg-[#ffffff] mx-2 my-5  shadow-sm h-full px-5'>
-         <UserList />
+        <div className='bg-[#ffffff] mx-2 my-5 shadow-sm h-full px-3 flex'>
+          <div className='flex-grow px-2'>
+            <GroupList />
+          </div>
+          <div className='w-1/5 border-l flex-wrap'>
+            <h1 className=' text-wrap'>
+
+            Add a New User
+
+    Navigate to Setup in the left nav
+    Click on User management
+    Click on the Add New User button
+    Fill in the user's information, including e-mail address, and select their site access and roles
+    Click on Add New User to complete the process
+
+Manage an Existing User
+
+    Navigate to Setup in the left nav
+    Click on User management
+    Click on the Manage dropdown in the Action column
+    In the dropdown, you will see three choices:
+        Manage User: change or remove assigned roles and site access
+        Resend Invitation Email: reset the password for the user and send a password reset e-mail automatically to the e-mail address listed for that given user
+        Delete User: remove the user completely from access to Bloomreach. This action is not reversible.
+
+            </h1>
+          </div>
+
         </div>
       </div>
     

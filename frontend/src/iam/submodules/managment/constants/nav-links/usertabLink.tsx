@@ -1,11 +1,11 @@
 
-import { UserDropDownDef, UserTabNavigationDef } from "../../../models/management.model";
+import { UserDropDownDef, UserTabNavigationDef } from "../../../../models/management.model";
 import * as RiIcons from "react-icons/ri";
 import * as IoIcons from "react-icons/io";
 import * as GrIcons from "react-icons/gr";
-import UserList from "../user/views/UserList";
-import { data } from "../../../constants/columns";
-import { UserDashboardProps } from "../../../models/user.model";
+import UserList from "../../user/views/UserList";
+import { data } from "../../../../constants/columns";
+import { UserDashboardProps } from "../../../../models/user.model";
 
 export const userTabLink: UserTabNavigationDef[] = [
     { 

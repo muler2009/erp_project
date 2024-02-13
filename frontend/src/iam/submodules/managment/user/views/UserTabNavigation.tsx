@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { userTabLink } from '../../constants/usertabLink';
+import { userTabLink } from '../../constants/nav-links/usertabLink';
 
 const UserTabNavigation = () => {
   

@@ -1,6 +1,6 @@
 import {createColumnHelper} from '@tanstack/react-table'
-import { UserAccountColumnsInterface } from '../../../models/user.model'
-import StatusChanger from '../user/views/StatusChanger'
+import { UserAccountColumnsInterface } from '../../../../models/user.model'
+import StatusChanger from '../../user/views/StatusChanger'
 
 
 

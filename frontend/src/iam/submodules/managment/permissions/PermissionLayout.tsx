@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import * as RxIcons from 'react-icons/rx'
-import { userDropDown } from '../constants/usertabLink'
+import { userDropDown } from '../constants/nav-links/usertabLink'
 
 const PermissionLayout = () => {
     const [managePermission, setManagePermission] = useState<boolean>(false)

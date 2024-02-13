@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import * as PiIcons from 'react-icons/pi'
-import { roleDropDown, roleTabLink } from '../../constants/roleConstant'
+import { roleDropDown, roleTabLink } from '../../constants/nav-links/roleConstant'
 import * as RxIcons from 'react-icons/rx'
 import CreateRoles from '../../modals/CreateRoles'
 

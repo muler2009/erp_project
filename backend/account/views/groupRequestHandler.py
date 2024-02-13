@@ -7,7 +7,6 @@ from account.serializers.groupSerilizer import CreateGroupSerializer, GetGroupSe
 from account.model.groups import GroupModel
 
 
-
 class CreateGroupRequestHandler(views.APIView):
     def post(self, request):
         serializer = CreateGroupSerializer(data=request.data)
@@ -16,13 +15,14 @@ class CreateGroupRequestHandler(views.APIView):
         except serializers.ValidationError as exc:
             return Response({'error': exc.detail}, status=status.HTTP_400_BAD_REQUEST)
         group_deserializer = serializer.create(serializer.validated_data)
+        
         RESPONSE_ON_SUCCESS = {
             "status": status.HTTP_201_CREATED,
             "statusText": "Group created Successfully!",
             "data": GetGroupSerializer(group_deserializer).data
         }
         
-        return RESPONSE_ON_SUCCESS
+        return Response(RESPONSE_ON_SUCCESS)
     
 
 # request handler for pull/get the Group
@@ -32,7 +32,7 @@ class GetGroupRequestHandler(views.APIView):
             groups = GroupModel.objects.all()
             if not groups:
                 raise EmptyResultSet
-            groups_serializer = GetGroupSerializer(data=groups, many=True)
+            groups_serializer = GetGroupSerializer(groups, many=True)
             return Response(groups_serializer.data, status=status.HTTP_200_OK)
         except EmptyResultSet as exc:
             return Response({

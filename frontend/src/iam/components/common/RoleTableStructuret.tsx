@@ -4,16 +4,6 @@ import { data } from '../../constants/columns'
 import { columns, ROLE_COLUMN } from '../../constants/columns'
 import { useTable, usePagination, Row, TableInstance, TableState, Column } from 'react-table'
 
-// interface TableTypeWorkaround<T extends object> extends TableInstance<T>, MyTableState {
-//   gotoPage: (index: number) => void;
-//   page: T[];
-// }
-
-// interface MyTableState extends TableState<TableData> {
-//   pageIndex: number;
-//   pageSize: number;
-// }
-
 interface CustomProps extends TableInstance {
   page: any;
   
@@ -32,12 +22,7 @@ interface TableProps {
 }
 
 const RoleTableStructure = ({columns, data, actions}: TableProps) => {
-    // const table = useReactTable({
-    //     data,
-    //     columns,
-    //     getCoreRowModel: getCoreRowModel(),
-    // })
-
+  
     const {
       getTableProps,
       getTableBodyProps,

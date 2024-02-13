@@ -7,6 +7,7 @@ import * as IoIcons from 'react-icons/io5';
 import * as VscIcon from 'react-icons/vsc';
 import * as TiIcons from "react-icons/ti";
 import * as PiIcons from "react-icons/pi";
+import * as MdIcons from "react-icons/md";
 
 export interface SideBar {
     label: string;
@@ -36,7 +37,7 @@ export const sidebarItems: SideBar[] = [
     { 
         path: '.',
         label: "Access management", 
-        icon: <PiIcons.PiFolderSimplePlusLight size={20}/>,
+        icon: <MdIcons.MdOutlineManageAccounts size={20} />,
         iconClosed: <PiIcons.PiFolderSimplePlusLight size={20}/>,
         iconOpened: <PiIcons.PiFolderSimpleMinusLight size={20}/>,    
         submenu: [
