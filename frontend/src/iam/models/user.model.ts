@@ -19,7 +19,17 @@ export interface UserDashboardProps{
   dropdownItems?: DropDowns[]; 
 }
 
-  export interface UserAccountColumnsInterface {
+export interface UserAccountInterface {
+  username: string,
+  accessType?: boolean,
+  authentication?: boolean,
+  autoPassword?: string,
+  passwordType?: string,
+  password?: string, 
+  policy?: boolean
+}
+
+export interface UserAccountColumnsInterface {
     firstName: string;
     lastName: string;
     email: string;
@@ -30,6 +40,7 @@ export interface UserDashboardProps{
     status: string; 
     action?: unknown
 }
+
 
 export interface UserAccountDataInterface {
     firstName: string;

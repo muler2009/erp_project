@@ -1,6 +1,7 @@
-import {getCoreRowModel, useReactTable, flexRender, ColumnDef,  getFilteredRowModel} from '@tanstack/react-table'
+import {getCoreRowModel, useReactTable, flexRender, ExpandedState, ColumnDef, getFilteredRowModel, getExpandedRowModel} from '@tanstack/react-table'
 import { useState } from 'react';
 import Search from '../common/Search';
+import { useGetSubGroupsQuery } from '../../features/groupsAPI';
 
 
 interface TableProps {
@@ -11,15 +12,28 @@ interface TableProps {
 
 const GroupTable = ({columns, data}: TableProps) => {
   const [globalFilter, setGlobalFilter] = useState<string | number>('')
+  const [expanded, setExpanded] = useState<ExpandedState>({})
+
+  const {data: Data} = useGetSubGroupsQuery()
+
+  const subRows = [
+    {abbreviation: "somethinf", name: "kememedsdfsa"},
+    {abbreviation: "somethinf", name: "kememedsdfsa"}
+  ]
+  
 
     const table = useReactTable({
         data,
         columns,
         state: {
-          globalFilter
+          globalFilter,
+          expanded
         },
+        onExpandedChange: setExpanded,
+        getSubRows: (row) => row.subRows,
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
+        getExpandedRowModel: getExpandedRowModel(),
         onGlobalFilterChange: setGlobalFilter,
       },      
     )  

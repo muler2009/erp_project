@@ -11,10 +11,10 @@ import SidebarMenu from '../components/reusable/SidebarMenu'
 const Dashboard = () => {
   return (
     <>
-      <div className='bg-[#fff]'>
+      <div className='bg-[#f3f3f3]'>
         <div className='flex flex-1 h-screen'>
-            {/* <Sidebar /> */}
-            <SidebarMenu />
+            <Sidebar />
+            {/* <SidebarMenu /> */}
             {/* <TreeView menu={menus} /> */}
             <div className='w-full flex flex-col'>
                 <Header />

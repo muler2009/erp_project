@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from account.model.groups import GroupModel
+from account.model.groups import GroupModel, SubGroupModel
 
 class CreateGroupSerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,3 +24,25 @@ class GetGroupSerializer(serializers.ModelSerializer):
         model = GroupModel
         fields = '__all__'
         
+
+class CreateSubGroupSerilizer(serializers.ModelSerializer):
+    class Meta:
+        model = SubGroupModel
+        fields = "__all__"
+        extra_kwargs = {
+            'sub_group_id': {
+                'read_only': True
+            }
+        }
+        
+    def create(self, validated_data):
+        subgroupData = validated_data.pop('group')
+        subgroup = SubGroupModel.objects.create(
+            group=subgroupData, **validated_data
+        )
+        return subgroup
+    
+class GetSubGroupSerilizer(serializers.ModelSerializer):
+    class Meta:
+        model = SubGroupModel
+        fields = "__all__"

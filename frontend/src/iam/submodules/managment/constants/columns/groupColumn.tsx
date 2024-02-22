@@ -5,6 +5,7 @@ import * as PiIcons from "react-icons/pi"
 import Tooltip from "../../../../components/reusable/Tooltip";
 import { useState } from "react";
 import CreateRoles from "../../modals/CreateRoles";
+import { useGetSubGroupsQuery } from "../../../../features/groupsAPI";
 
 
 const columnHelper = createColumnHelper<GroupColumn>()
@@ -43,28 +44,42 @@ export const GROUP_COLUMN = [
 
     columnHelper.accessor(row => row.action, {
         header: "Actions",
-        cell: ({row}) => {
-            const value = row.original
+        cell: (props) => {
+            const value = props.row.original 
             return(
-                <div className="">
-                    {
-                        value.has_sub_group 
-                        ? <PiIcons.PiFolderSimplePlusFill  size={20} color="black" onClick={() => alert(`${value.has_sub_group}`)}/>
-                        : <PiIcons.PiFolderSimpleMinusFill size={20} color="black" />
-                    
-                    }
-                </div>
+             <>
+                {
+                    value.has_sub_group 
+                    ? (
+                        props.row.getCanExpand() 
+                        ? (
+                            <>
+                                <PiIcons.PiFolderSimplePlusFill  size={20} color="black" onClick={props.row.getToggleExpandedHandler()}/>
+                                <button onClick={props.row.getToggleExpandedHandler()}>
+                                    toogle
+                                </button>
+                            </>
+                        ) 
+                        : null
+                    ) 
+                    : null
+                }
+                {props.getValue()}
+                
+             </>
             )
-
         },
         
-        enableSorting: false
+        enableSorting: false,
     }),
 
     columnHelper.accessor(row => row.custom_group_abbreviation, {
         id: "Group Abbreviation",
-        cell: row => (
-            <p className='text-black text-opacity-60'>{row.getValue()}</p>
+        cell: (props) => (
+            <>
+            {/* <PiIcons.PiFolderSimplePlusFill  size={20} color="black" onClick={props.row.getToggleExpandedHandler()}/> */}
+            <p className='text-black text-opacity-60'>{props.getValue()}</p>
+            </>
         )
     }),
 

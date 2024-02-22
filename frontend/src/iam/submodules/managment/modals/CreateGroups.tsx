@@ -5,7 +5,7 @@ import CreateGroupForm from '../groups/groupviews/CreateGroupForm';
 import useGroup from '../groups/groupHooks/useGroup';
 import { useCreateGroupsMutation } from '../../../features/groupsAPI';
 
-type CreateGroupsProps = {
+export interface CreateGroupsProps  {
     isOpen: boolean,
     title: string,
     handleIsOpenCloseMenu: () => void
@@ -75,14 +75,46 @@ const CreateGroups = ({isOpen,title, handleIsOpenCloseMenu}: CreateGroupsProps) 
                                     <input 
                                         id="recruitment_related_input" 
                                         type="checkbox" 
-                                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
+                                        className="w-4 h-4 " 
                                         name='has_sub_group' 
-                                        checked={groupData?.has_sub_group} // Make sure this is bound to state
+                                        checked={groupData?.has_sub_group || false}// Make sure this is bound to state
                                         onChange={handleGroupInputChange}
                                     />
                                     <h1 className='whitespace-nowrap text-[13px] whitespace-wrap font-Rubik text-[#333] text-opacity-80'>Add Subgroup</h1>
                                 </label>
                                 <p className="text-[12px] text-[#333] text-opacity-50">check the box if the group being created has sub-groups</p>
+                            </div>
+
+                            <div className=''>
+                                {
+                                    groupData?.has_sub_group ? (
+                                        <div className='flex space-x-5'>
+                                            <InputWithDesc 
+                                                label='Sub Group Name *'
+                                                id= 'sub_groupname_input'
+                                                type='text'
+                                                placeholder='Sub Group name '
+                                                name='sub_group_name'
+                                                className='input-md font-Poppins text-[13px]'
+                                                
+                                                desc="Manimum 100 character. Don't use special charachers '+, $,#,% ...'"
+                                                value={groupData?.sub_group_name}
+                                                onChange={handleGroupInputChange}
+                                            />
+                                            <InputWithDesc 
+                                                label='SubGroup Abbreviation *'
+                                                id= 'groupname_input'
+                                                type='text'
+                                                placeholder='Abbreviation'
+                                                name='sub_group_abbreviation'
+                                                className='input-md font-Poppins text-[13px]'
+                                                desc='provide an abbreviation: SuGRP001'
+                                                value={groupData?.sub_group_abbreviation}
+                                                onChange={handleGroupInputChange}
+                                            />
+                                        </div>
+                                    ) : null
+                                }
                             </div>
 
                         </ModalBody>

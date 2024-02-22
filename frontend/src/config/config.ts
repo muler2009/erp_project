@@ -4,4 +4,6 @@ export const API_TAGS = {
     USER: "User",
     ROLE_TAG: "Roles",
     GROUPS_TAG: "Groups",
+    SUB_GROUPS_TAG: "Sub Groups",
+
 } as const

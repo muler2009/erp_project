@@ -13,6 +13,7 @@ export interface InputInterface {
     className: string,
     desc?: string,
     label_description?: string
+    disabled?: boolean | undefined
 }
 
 export interface TextInputWithDescWithout {

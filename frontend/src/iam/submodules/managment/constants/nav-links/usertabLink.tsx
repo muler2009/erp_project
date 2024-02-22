@@ -18,8 +18,7 @@ export const userTabLink: UserTabNavigationDef[] = [
       tabContent: <h1>Test</h1>,
       label: "Trash",
       total: true
-    }
-    
+    }  
 ] 
 
 export const userManagemenu: UserDashboardProps[] = [

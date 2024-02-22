@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { useRoutes } from 'react-router-dom';
-import Dashboard from '../layout/Dashboard';
+// import Dashboard from '../layout/Dashboard';
 import RoleLayout from '../submodules/managment/role/rolelayout/RoleLayout';
 import UserLayout from '../submodules/managment/user/userLayout/UserLayout';
 import UnderConstruction from '../components/reusable/UnderConstruction';
@@ -10,6 +10,7 @@ import TreeView from '../components/reusable/TreeView';
 import menus from '../constants/data';
 import { sidebarItems } from '../constants/sidebar';
 import SidebarMenu from '../components/reusable/SidebarMenu';
+import Dashboard from '../submodules/dashboard/Dashboard';
 
 interface Route {
     path: string;
@@ -23,7 +24,7 @@ interface RouteWithChildren {
 
 const AdminRoutes = () => {
   const routes: (Route | RouteWithChildren)[] = [
-    { path: '/',  element: <UnderConstruction /> },
+    { path: '/',  element: <Dashboard /> },
     { path: 'users',  element: <UserLayout /> },
     { path: 'groups',  element: <GroupManagementDashboard /> },
     { path: 'role_management',  element: <RoleLayout /> },

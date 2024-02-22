@@ -1,7 +1,7 @@
 import React from "react";
 import * as AiIcons from 'react-icons/ai';
 import * as FaIcons from 'react-icons/fa';
-import * as RiIcons from 'react-icons/ri';
+import * as RxIcons from 'react-icons/rx';
 import * as BiIcons from 'react-icons/bi';
 import * as IoIcons from 'react-icons/io5';
 import * as VscIcon from 'react-icons/vsc';
@@ -38,13 +38,21 @@ export const sidebarItems: SideBar[] = [
         path: '.',
         label: "Access management", 
         icon: <MdIcons.MdOutlineManageAccounts size={20} />,
-        iconClosed: <PiIcons.PiFolderSimplePlusLight size={20}/>,
-        iconOpened: <PiIcons.PiFolderSimpleMinusLight size={20}/>,    
+        iconOpened: <RxIcons.RxCaretUp size={20}/>,
+        iconClosed: <RxIcons.RxCaretDown size={20}/>,    
         submenu: [
             {
                 path: 'groups',
                 label: 'Groups',
                 icon: <TiIcons.TiGroup />,
+                iconClosed: <PiIcons.PiFolderSimplePlusLight size={20}/>,
+                iconOpened: <PiIcons.PiFolderSimpleMinusLight size={20}/>,   
+               
+            },
+            {
+                path: 'role_management',
+                label: 'Roles',
+                icon: <VscIcon.VscOrganization />,
                 iconClosed: <PiIcons.PiFolderSimplePlusLight size={20}/>,
                 iconOpened: <PiIcons.PiFolderSimpleMinusLight size={20}/>,   
                
@@ -56,14 +64,7 @@ export const sidebarItems: SideBar[] = [
                 iconClosed: <PiIcons.PiFolderSimplePlusLight size={20}/>,
                 iconOpened: <PiIcons.PiFolderSimpleMinusLight size={20}/>,   
             },
-            {
-                path: 'role_management',
-                label: 'Roles',
-                icon: <VscIcon.VscOrganization />,
-                iconClosed: <PiIcons.PiFolderSimplePlusLight size={20}/>,
-                iconOpened: <PiIcons.PiFolderSimpleMinusLight size={20}/>,   
-               
-            },
+       
             {
                 path: 'perm_management',
                 label: 'Permission System',

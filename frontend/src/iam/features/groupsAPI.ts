@@ -1,6 +1,6 @@
 import { erpAPISlice } from "../../api/apiSlice"
 import { API_TAGS } from "../../config/config"
-import { GroupInterface, GroupAPIResponse } from "../models/group.model"
+import { GroupInterface, GroupAPIResponse, SubGroupInterface } from "../models/group.model"
 
 export const groupsAPI = erpAPISlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -10,6 +10,13 @@ export const groupsAPI = erpAPISlice.injectEndpoints({
                 method: 'GET'
             }),
             providesTags: [API_TAGS.GROUPS_TAG]
+        }),
+        getSubGroups: builder.query<SubGroupInterface[], void>({
+            query: () => ({
+                url: `account/get_subgroup/`,
+                method: 'GET'
+            }),
+            providesTags: [API_TAGS.SUB_GROUPS_TAG]
         }),
         createGroups: builder.mutation<GroupAPIResponse, GroupInterface>({
             query: (data) => ({
@@ -26,5 +33,6 @@ export const groupsAPI = erpAPISlice.injectEndpoints({
 
 export const {
     useCreateGroupsMutation,
-    useGetGroupsQuery
+    useGetGroupsQuery,
+    useGetSubGroupsQuery
 } = groupsAPI

@@ -40,13 +40,18 @@ const Submenu = (props: SidemenuProps) => {
                   : null}
                 </div>
         </Link>
-        <div className="pl-6" onClick={handleActiveLink}>
+        <div className="" onClick={handleActiveLink}>
           {
             subnav && 
               sideParent.submenu?.map((item, index) => {
                 return(
-                  <Link to={item.path} key={index} className={`pl-5 text-[#333] text-opacity-70 flex items-center space-x-3 hover:rounded-none focus:border-r-[5px] hover:bg-[#ebecf0] focus:bg-[#eee]  focus:border-green-700 ${active === index ? 'text-green-900 font-bold': ''} `} >
-                    {item.icon}
+                  
+                  <Link 
+                    to={item.path} 
+                    key={index} 
+                    className={`pl-12 text-[#333] text-opacity-70 flex items-center space-x-3 hover:rounded-none focus:border-r-[5px] hover:bg-[#ebecf0]`} 
+                  >
+                  
                     <h1 className={`py-2 text-[13px] duration-500 font-Poppins  ${!controller && 'opacity-0 translate-x-28 overflow-hidden'}`}>{item.label}</h1>
                   </Link>
                 )

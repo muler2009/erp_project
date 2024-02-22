@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import MenuList from './MenuList'
+// import MenuList from './MenuList'
 import { Link } from 'react-router-dom'
 import { SideBar } from '../../constants/sidebar'
 import * as PiIcons from "react-icons/pi";
@@ -46,7 +46,7 @@ const MenuItem = ({item, controller}: MenuItemProps ) => {
                 item && item.submenu && item.submenu.length > 0 && openClose[item.label] ? 
                     (
                       <div className={`cursor-pointer flex flex-col`}>
-                          <MenuList list={item.submenu} />
+                          {/* <MenuList list={item.submenu} /> */}
                       </div>
                     )
                 : null

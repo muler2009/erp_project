@@ -25,3 +25,24 @@
   border-top: var(--size) solid rgba(46, 41, 41, 0.5);  
   top:65%;
 }
+
+input[type="checkbox"]:checked::before {
+  content: "\2714";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+}
+
+/* input[type="checkbox"] {
+  background-color: white;
+  appearance: auto;
+  
+}
+
+input[type="checkbox"]:checked {
+  appearance: none;
+  border: 2px solid green;
+  background-color: lightgreen;
+} */

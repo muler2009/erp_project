@@ -55,15 +55,12 @@ const UserLayout = () => {
                   )
                 }     
               </div>
-              <div className={`flex justify-start items-center px-5 py-1.5 bg-[#e6e6e6] bg-opacity-30 text-[14px] font-Poppins`}>
-                Actions
-              </div>
-
+             
             </div>
 
           </div>      
         </div>
-        <div className='bg-[#ffffff] mx-2 my-5  shadow-sm h-full'>
+        <div className='bg-[#ffffff] mr-2 my-5 shadow-sm h-full'>
           <UserTabNavigation />  
         </div>
       </div>

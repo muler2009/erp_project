@@ -1,20 +1,19 @@
 import React, { useCallback, useState } from 'react'
-
-import CreateUserAccount from '../../modals/CreateUserAccount1'
 import * as LuIcons from 'react-icons/lu'
-import { identityProps, userDropDown, userManagemenu } from '../../constants/nav-links/usertabLink'
 import * as IoIcons  from "react-icons/io5";
-import {CreateNewAccount, CreateUserAccount1} from '../../modals'
+import {CreateUserAccount1} from '../../modals'
 import { groupsDropdown } from '../../constants/groups';
-import UserList from '../../user/views/UserList';
 import CreateGroups from '../../modals/CreateGroups';
 import GroupList from './GroupList';
+import { useGetSubGroupsQuery } from '../../../../features/groupsAPI';
 
 const GroupManagementDashboard = () => {
  
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [dropdown, setDropItems] = useState<boolean>(false)
   const [activeTabIndex, setActiveTabIndex] = useState(0);
+
+  const {data: subgroup =[]} = useGetSubGroupsQuery()
   
   const handleDropdownItemClick = (index: number) => {
     setActiveTabIndex(index);
@@ -23,6 +22,8 @@ const GroupManagementDashboard = () => {
   }
 
   const handleIsOpenCloseMenu = useCallback(() => {setIsOpen(prevOpen => !prevOpen)}, [isOpen])
+
+
 
   return (
     <>
@@ -69,15 +70,15 @@ const GroupManagementDashboard = () => {
             <GroupList />
           </div>
           <div className='w-1/5 border-l flex-wrap'>
-            <h1 className=' text-wrap'>
+            <h1 className=' text-wrap px-5 font-Poppins text-sm text-justify'>
 
             Add a New User
 
-    Navigate to Setup in the left nav
-    Click on User management
-    Click on the Add New User button
-    Fill in the user's information, including e-mail address, and select their site access and roles
-    Click on Add New User to complete the process
+              Navigate to Setup in the left nav
+              Click on User management
+              Click on the Add New User button
+              Fill in the user's information, including e-mail address, and select their site access and roles
+              Click on Add New User to complete the process
 
 Manage an Existing User
 

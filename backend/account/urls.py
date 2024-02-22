@@ -14,5 +14,7 @@ urlpatterns = [
     # iam group related routing
     path('get_group/', GetGroupRequestHandler.as_view()),
     path('create_group/', CreateGroupRequestHandler.as_view()),
+    path('get_subgroup/', GetSubGroupRequestHandler.as_view()),
+    path('create_subgroup/', CreateSubGroupRequestHandler.as_view()),
 
 ]
