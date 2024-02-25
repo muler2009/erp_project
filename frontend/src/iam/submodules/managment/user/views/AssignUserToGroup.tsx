@@ -1,12 +1,15 @@
 import React, { useState, useCallback } from 'react'
-import GroupList from '../../groups/groupviews/GroupList'
+import { useGetGroupsQuery } from '../../../../features/groupsAPI'
 import CreateGroups from '../../modals/CreateGroups'
+import GroupTable from '../../../../components/Table/GroupTable'
+import { GROUP_COLUMN_WITH_SELECTION } from '../../constants/columns/groupColumn'
 
 const AssignUserToGroup = () => {
 
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
     const handleIsOpenCloseMenu = useCallback(() => {setIsOpen(prevOpen => !prevOpen)}, [isOpen])
+    const {data, isSuccess, isLoading} = useGetGroupsQuery()
 
   return (
     <>
@@ -18,7 +21,29 @@ const AssignUserToGroup = () => {
         </div>
       </div>
       <div className='pt-1'>
-        <GroupList />
+     
+        {
+            isSuccess ? (
+                data?.length > 0 ? (
+                <div>
+                    <GroupTable 
+                        columns={GROUP_COLUMN_WITH_SELECTION}
+                        data={data || []}                        
+                    />
+                </div>
+                
+                ) : (
+                    <div className='flex flex-col'>
+                        <GroupTable 
+                        columns={GROUP_COLUMN_WITH_SELECTION}
+                        data={data || []}                                          
+                    />
+                        <p className='text-black text-center text-[18px] text-opacity-50'>No Group available.</p>                      
+                    </div>
+                )
+            ) : null
+        }
+    
       </div>
 
       <CreateGroups isOpen={isOpen} handleIsOpenCloseMenu={handleIsOpenCloseMenu} title="New Group" />
@@ -27,3 +52,8 @@ const AssignUserToGroup = () => {
 }
 
 export default AssignUserToGroup
+
+
+
+
+

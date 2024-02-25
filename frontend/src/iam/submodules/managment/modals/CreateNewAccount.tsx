@@ -66,8 +66,7 @@ const CreateNewAccount = ({setIsOpen, isOpen, title} : ModalProps) => {
                                                     {
                                                         isActive ?  <LiaStackExchange /> : <MdIcons.MdModeEdit />
                                                     
-                                                    }
-                                                   
+                                                    } 
                                                 </div>
                                                 <div className={`flex flex-col items-start`} >  
                                                     <h1 className='text-sm uppercase'>Step - <span>{index + 1}</span></h1>

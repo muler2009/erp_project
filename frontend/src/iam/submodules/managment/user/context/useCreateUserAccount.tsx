@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import { UserAccountInterface } from '../../../../models/user.model'
 
 
+
 export type ContextType = {
   newUserAccount: UserAccountInterface;
   setUserNewAccount: React.Dispatch<React.SetStateAction<UserAccountInterface>>;
   handleUserCreateInputChanges: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleGroupAttachement: () => void;
+
   canSave: boolean;
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
@@ -34,18 +37,32 @@ const useCreateUserAccount = (): ContextType => {
         passwordType: "",
         autoPassword: "",
         password: "",
-        policy: false     
+        policy: false,
+        group: [{
+          custom_group_abbreviation: "",
+          custom_group_name: "",
+        }]      
     })
 
     const [page, setPage] = useState(0)
 
     const handleUserCreateInputChanges = (event: React.ChangeEvent<HTMLInputElement> ) => {
-
       const {type, name, value, checked} = event.target
-
       setUserNewAccount((prevData) => ({
           ...prevData,
           [name]:  type === 'checkbox' ? checked : value
+      }))
+    }
+
+    const handleGroupAttachement = () => {
+      setUserNewAccount(prevData => ({
+        ...prevData,
+        group: [
+          {
+            custom_group_abbreviation: "",
+            custom_group_name: "",
+          }
+        ]
       }))
     }
 
@@ -67,6 +84,7 @@ const useCreateUserAccount = (): ContextType => {
     newUserAccount,
     setUserNewAccount,
     handleUserCreateInputChanges, 
+    handleGroupAttachement,
     canSave,
     page,
     setPage,

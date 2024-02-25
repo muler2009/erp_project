@@ -1,4 +1,5 @@
 import { Label } from "recharts";
+import { GroupInterface } from "./group.model";
 
 export interface ModalProps {
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -26,7 +27,8 @@ export interface UserAccountInterface {
   autoPassword?: string,
   passwordType?: string,
   password?: string, 
-  policy?: boolean
+  policy?: boolean,
+  group?: GroupInterface[];
 }
 
 export interface UserAccountColumnsInterface {

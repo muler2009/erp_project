@@ -6,8 +6,7 @@ import { GROUP_COLUMN } from '../../constants/columns/groupColumn'
 const GroupList = () => {
     const { data, isSuccess, isLoading} = useGetGroupsQuery()
   return (
-    <div>
-       
+    <div>  
         {
             isSuccess ? (
                 data?.length > 0 ? (
@@ -22,8 +21,7 @@ const GroupList = () => {
                     <div className='flex flex-col'>
                         <GroupTable 
                         columns={GROUP_COLUMN}
-                        data={data || []}
-                                            
+                        data={data || []}                                          
                     />
                         <p className='text-black text-center text-[18px] text-opacity-50'>No Group available.</p>                      
                     </div>
