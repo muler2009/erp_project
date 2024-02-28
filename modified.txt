@@ -62,3 +62,56 @@
               <div className=''>
                 Notifications
               </div>
+
+
+
+
+
+ const handlesetSelectedRow = (selectedRows: any[]) => {
+    // Update newUserAccount.group based on selectedRows
+    const selectedGroups = selectedRows.map((row) => {
+      const value = row.original;
+      return {
+        custom_group_abbreviation: value.custom_group_abbreviation,
+        custom_group_name: value.custom_group_name
+      };
+    });
+
+    setUserNewAccount((prevUserAccount) => ({
+      ...prevUserAccount,
+      group: selectedGroups
+    }));
+  };
+
+
+const AttachGroupCheckBoxCell = ({ info }: RowInterface) => {
+    const value = info.row.original
+    const row = info.row
+    const {setUserNewAccount, newUserAccount} = useCreateUserAccount()
+    const assignUserToGroupChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const checked = event.target.checked;
+      if (checked) {
+        setUserNewAccount((prevData) => ({
+          ...prevData,
+          group: [
+            
+            {
+              custom_group_abbreviation: value.custom_group_abbreviation,
+              custom_group_name: value.custom_group_name,
+            },
+          ],
+        }));
+      } 
+   
+    };
+  
+    return (
+      <AttachGroupCheckBox
+        checked={row.getIsSelected()}
+        disabled={!row.getCanSelect()}
+        indeterminate={row.getIsSomeSelected()}
+        onChange={row.getToggleSelectedHandler()}
+        assignUserToGroupChange={assignUserToGroupChange}
+      />
+    );
+  };

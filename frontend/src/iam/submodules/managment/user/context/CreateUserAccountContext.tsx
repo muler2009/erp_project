@@ -1,5 +1,4 @@
-import React, {createContext, useState} from 'react'
-import { UserAccountInterface } from '../../../../models/user.model'
+import React, {createContext} from 'react'
 import useCreateUserAccount, {ContextType} from './useCreateUserAccount'
 
 

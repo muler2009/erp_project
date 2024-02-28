@@ -8,7 +8,7 @@ import { CreateUserAccountContextProvider } from '../user/context/CreateUserAcco
 import * as GrIcons from 'react-icons/gr'
 import useCreateUserAccount from '../user/context/useCreateUserAccount';
 import { LiaStackExchange } from "react-icons/lia";
-import { Permission } from '../user/views';
+import { CompleteUserCreation, Permission, UserCreationSummary } from '../user/views';
 import * as MdIcons from "react-icons/md";
 
 interface UserContainerInterface {
@@ -33,8 +33,8 @@ const CreateNewAccount = ({setIsOpen, isOpen, title} : ModalProps) => {
     const display: UserContainerInterface = {
         0: <UserDetail />,
         1: <Permission />,
-        2: "Preview",
-        3: "Complete"   
+        2: <UserCreationSummary />,
+        3: <CompleteUserCreation />  
     }
 
    
@@ -108,9 +108,5 @@ const CreateNewAccount = ({setIsOpen, isOpen, title} : ModalProps) => {
         </CreateUserAccountContextProvider>
       ) : null;
 }
-
-
-
-
 
 export default CreateNewAccount

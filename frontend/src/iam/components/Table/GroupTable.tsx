@@ -1,9 +1,6 @@
-import {getCoreRowModel, useReactTable, flexRender, ExpandedState, ColumnDef, getFilteredRowModel, getExpandedRowModel, RowSelectionState, RowSelection} from '@tanstack/react-table'
+import {getCoreRowModel, useReactTable, flexRender, ExpandedState, getFilteredRowModel, getExpandedRowModel, RowSelectionState} from '@tanstack/react-table'
 import { useState } from 'react';
 import Search from '../common/Search';
-import { useGetSubGroupsQuery } from '../../features/groupsAPI';
-import useCreateUserAccount from '../../submodules/managment/user/context/useCreateUserAccount';
-
 
 interface TableProps {
   columns: any[];
@@ -11,43 +8,39 @@ interface TableProps {
   
 }
 
+interface RowData {
+  custom_group_abbreviation: string,
+  custom_group_name: string,
+ 
+}
+
 const GroupTable = ({columns, data}: TableProps) => {
   const [globalFilter, setGlobalFilter] = useState<string | number>('')
   const [expanded, setExpanded] = useState<ExpandedState>({})
-  const [selectedRow, setSelectedRow] = useState<RowSelectionState>({})
-  const { newUserAccount, setUserNewAccount } = useCreateUserAccount()
-
-  const {data: Data} = useGetSubGroupsQuery()
-
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>({}) 
+  const [selectedRow, setSelectedRow] = useState<RowData | null>(null);
   
-  const handlesetSelectedRow = (selectedRows: any[]) => {
-    // Update newUserAccount.group based on selectedRows
-    const selectedGroups = selectedRows.map((row) => {
-      const value = row.original;
-      return {
-        custom_group_abbreviation: value.custom_group_abbreviation,
-        custom_group_name: value.custom_group_name
-      };
-    });
-
-    setUserNewAccount((prevUserAccount) => ({
-      ...prevUserAccount,
-      group: selectedGroups
-    }));
+  const handleRowSelectionChange = (newSelectedRow: any) => {
+    setRowSelection(newSelectedRow);
   };
-  
 
-    const table = useReactTable({
+
+  console.log(selectedRow)
+
+
+  const table = useReactTable({
         data,
         columns,
         state: {
           globalFilter,
           expanded,
-          rowSelection: selectedRow,
+          rowSelection
+          
         },
+
         enableRowSelection: true,
         onExpandedChange: setExpanded,
-        onRowSelectionChange: setSelectedRow,
+        onRowSelectionChange: handleRowSelectionChange,
         getSubRows: (row) => row.subRows,
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
@@ -56,6 +49,7 @@ const GroupTable = ({columns, data}: TableProps) => {
       },      
     )  
 
+   
    
     return (
       <div className='flex flex-col gap-5'>
@@ -104,22 +98,22 @@ const GroupTable = ({columns, data}: TableProps) => {
             </tbody>
           </table>
           <div className=''>
-          {newUserAccount?.group?.length} of{' '}
-          {/* {
+          {/* {newUserAccount?.group?.length} of{' '} */}
+          {
             table.getSelectedRowModel().flatRows.map((s, index) => (
               <div className='' key={index}>
                 {JSON.stringify(s.original)}
               </div>
             ))
-          } */}
-
-          {
-            newUserAccount?.group?.map((t, index) => (
-              <div className='' key={index}>
-                <li>{t.custom_group_abbreviation}</li>
-              </div>
-            ))
           }
+           {rowSelection && (
+        <div>
+          <h2>Selected Row</h2>
+          <p>ID: {rowSelection.custom_group_abbreviation}</p>
+          <p>Name: {rowSelection.custom_group_name}</p>
+          {/* Render other properties of the selected row */}
+        </div>
+      )}
         
           </div>
         </div>

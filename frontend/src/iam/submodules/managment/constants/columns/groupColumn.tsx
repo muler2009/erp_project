@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, HTMLProps, HTMLAttributes} from "react";
+import React, {useRef, useEffect, HTMLProps} from "react";
 import { createColumnHelper, CellContext } from "@tanstack/react-table";
 import { GroupColumn, GroupInterface } from "../../../../models/group.model";
 import * as AiIcons from "react-icons/ai";
@@ -6,7 +6,6 @@ import * as PiIcons from "react-icons/pi"
 import Tooltip from "../../../../components/reusable/Tooltip";
 import { useState } from "react";
 import CreateRoles from "../../modals/CreateRoles";
-import { useGetSubGroupsQuery } from "../../../../features/groupsAPI";
 import useCreateUserAccount from "../../user/context/useCreateUserAccount";
 
 
@@ -14,11 +13,6 @@ const columnHelper = createColumnHelper<GroupColumn>()
 
 interface ActionCellProps {
     info: CellContext<GroupInterface, boolean | string | undefined>;
-}
-
-interface RowInterface {
-  info: CellContext<GroupInterface, undefined>
-  
 }
   
   const AddSubGroup: React.FC<ActionCellProps> = ({ info }) => {
@@ -115,10 +109,8 @@ export const GROUP_COLUMN = [
 
 {/** Checkbox defination for group attachement */}
 
-const AttachGroupCheckBox = ({ indeterminate, className = '', assignUserToGroupChange, ...rest }: { indeterminate?: boolean, assignUserToGroupChange?: (event: React.ChangeEvent<HTMLInputElement>) => void; } & HTMLProps<HTMLInputElement>) => {
-    const ref = useRef<HTMLInputElement>(null!);
-    const {handleGroupAttachement} = useCreateUserAccount()
-  
+const AttachGroupCheckBox = ({ indeterminate, className=' ', ...rest }: { indeterminate?: boolean} & HTMLProps<HTMLInputElement>) => {
+    const ref = useRef<HTMLInputElement>(null!);  
     useEffect(() => {
       if (typeof indeterminate === 'boolean') {
         ref.current.indeterminate = !rest.checked && indeterminate;
@@ -131,49 +123,11 @@ const AttachGroupCheckBox = ({ indeterminate, className = '', assignUserToGroupC
         ref={ref}
         className={`w-3 h-3 rounded-[2px] appearance-auto checked:appearance-none checked:bg-gray-500 before:checked:text-white ${className}`}
         {...rest}
-        
-        
+         
       />
     );
 };
 
-
-const AttachGroupCheckBoxCell = ({ info }: RowInterface) => {
-    const value = info.row.original
-    const row = info.row
-    const {setUserNewAccount, newUserAccount} = useCreateUserAccount()
-    const assignUserToGroupChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      const checked = event.target.checked;
-      if (checked) {
-        setUserNewAccount((prevData) => ({
-          ...prevData,
-          group: [
-            
-            {
-              custom_group_abbreviation: value.custom_group_abbreviation,
-              custom_group_name: value.custom_group_name,
-            },
-          ],
-        }));
-      } 
-      // else {
-      //   setUserNewAccount((prevData) => ({
-      //     ...prevData,
-      //     group: prevData?.group?.filter((groupItem) => groupItem.custom_group_abbreviation !== value.custom_group_abbreviation),
-      //   }));
-      // }
-    };
-  
-    return (
-      <AttachGroupCheckBox
-        checked={row.getIsSelected()}
-        disabled={!row.getCanSelect()}
-        indeterminate={row.getIsSomeSelected()}
-        onChange={row.getToggleSelectedHandler()}
-        assignUserToGroupChange={assignUserToGroupChange}
-      />
-    );
-  };
 
 export const GROUP_COLUMN_WITH_SELECTION = [
 
@@ -188,7 +142,18 @@ export const GROUP_COLUMN_WITH_SELECTION = [
                 />
             )
         },
-        cell: (info: CellContext<GroupInterface, | undefined>) => <AttachGroupCheckBoxCell info={info} />,
+        //cell: (info: CellContext<GroupInterface, | undefined>) => <AttachGroupCheckBoxCell info={info} />,
+        cell: ({row}) => {
+          return(
+            <AttachGroupCheckBox
+              checked={row.getIsSelected()}
+              disabled={!row.getCanSelect()}
+              indeterminate={row.getIsSomeSelected()}
+              onChange={row.getToggleSelectedHandler()}
+              
+          />
+          )
+        }
       },
           
     ),

@@ -1,4 +1,3 @@
-import React from 'react'
 import GroupTable from '../../../../components/Table/GroupTable'
 import { useGetGroupsQuery } from '../../../../features/groupsAPI'
 import { GROUP_COLUMN } from '../../constants/columns/groupColumn'
@@ -7,6 +6,7 @@ const GroupList = () => {
     const { data, isSuccess, isLoading} = useGetGroupsQuery()
   return (
     <div>  
+        {isLoading && <p>please wait it is loading ...</p>}
         {
             isSuccess ? (
                 data?.length > 0 ? (
