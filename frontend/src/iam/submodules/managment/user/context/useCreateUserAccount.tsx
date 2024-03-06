@@ -1,28 +1,8 @@
 import React, { useState } from 'react'
-import { UserAccountInterface } from '../../../../models/user.model'
+import {UserAccountInterface, ContextType } from '../../../../models/user.model'
 
 
-
-export type ContextType = {
-  newUserAccount: UserAccountInterface;
-  setUserNewAccount: React.Dispatch<React.SetStateAction<UserAccountInterface>>;
-  handleUserCreateInputChanges: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleGroupAttachement: () => void;
-
-  canSave: boolean;
-  page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-  disableNext: boolean;
-  disablePrev: boolean;
-  prevHide: boolean | undefined | any;
-  nextHide: boolean | undefined | any;
-  submitHide: boolean | undefined | any;
-  canSubmit: boolean;
-  userCreationStep: any
-};
-
-const useCreateUserAccount = (): ContextType => {
-
+const useCreateUserAccount = () => {
       const userCreationStep = {
         0: "UserDetail",
         1: "Permission",
@@ -32,39 +12,45 @@ const useCreateUserAccount = (): ContextType => {
 
     const [newUserAccount, setUserNewAccount] = useState<UserAccountInterface>({
         username: "",
+        email: "",
         accessType: false,
         authentication: false,
         passwordType: "",
         autoPassword: "",
         password: "",
         policy: false,
-        group: [{
-          custom_group_abbreviation: "",
-          custom_group_name: "",
-        }]      
+        group: ""
     })
 
     const [page, setPage] = useState(0)
 
-    const handleUserCreateInputChanges = (event: React.ChangeEvent<HTMLInputElement> ) => {
-      const {type, name, value, checked} = event.target
-      setUserNewAccount((prevData) => ({
-          ...prevData,
-          [name]:  type === 'checkbox' ? checked : value
-      }))
-    }
+    // const handleUserCreateInputChanges = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
+    //   const {type, name, value} = event.target;
+    
+    //   if (type === 'checkbox') {
+    //     const target = event.target as HTMLInputElement;
+    //     setUserNewAccount((prevData) => ({
+    //       ...prevData,
+    //       [name]: target.checked,
+    //     }))
+     
+    //   } else {
+    //     const target = event.target as HTMLSelectElement;
+    //     setUserNewAccount((prevData) => ({
+    //       ...prevData,
+    //       [name]: target.value,
+    //     }));
+    //   }
+    // };
 
-    const handleGroupAttachement = () => {
-      setUserNewAccount(prevData => ({
-        ...prevData,
-        group: [
-          {
-            custom_group_abbreviation: "",
-            custom_group_name: "",
-          }
-        ]
-      }))
-    }
+    const handleUserCreateInputChanges = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
+      const {type, name, value} = event.target;
+      
+      setUserNewAccount({
+        ...newUserAccount,
+        [name]: value
+      })
+    };
 
     const canSave = [...Object.values(setUserNewAccount)].every(Boolean)
 
@@ -84,7 +70,6 @@ const useCreateUserAccount = (): ContextType => {
     newUserAccount,
     setUserNewAccount,
     handleUserCreateInputChanges, 
-    handleGroupAttachement,
     canSave,
     page,
     setPage,

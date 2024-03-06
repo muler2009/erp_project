@@ -20,15 +20,21 @@ export interface UserDashboardProps{
   dropdownItems?: DropDowns[]; 
 }
 
+export type UserGroup = {
+  custom_group_abbreviation: string,
+  custom_group_name: string,
+}
+
 export interface UserAccountInterface {
   username: string,
+  email: string,
   accessType?: boolean,
   authentication?: boolean,
   autoPassword?: string,
   passwordType?: string,
   password?: string, 
   policy?: boolean,
-  group?: GroupInterface[];
+  group?: string | undefined
 }
 
 export interface UserAccountColumnsInterface {
@@ -54,4 +60,20 @@ export interface UserAccountDataInterface {
     userType: string;
     isActive?: boolean;
     isStaff?: boolean;
+}
+
+export interface ContextType {
+  newUserAccount: UserAccountInterface;
+  setUserNewAccount: React.Dispatch<React.SetStateAction<UserAccountInterface>>
+  handleUserCreateInputChanges: (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => void;
+  canSave: boolean;
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  userCreationStep: { [key: number]: string };
+  disableNext: boolean;
+  disablePrev: boolean;
+  prevHide?: string; // Make it nullable
+  nextHide: string;
+  submitHide: string;
+  canSubmit: boolean;
 }

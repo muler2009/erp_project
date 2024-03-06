@@ -19,7 +19,7 @@ const StepperBar = () => {
                     </div>
                     <div className={`flex flex-col items-start`} >  
                         <h1 className='text-sm uppercase'>Step - <span>{index + 1}</span></h1>
-                        <h1 className='text-sm text-green-600'>{userCreationStep[index]}</h1>
+                        {/* <h1 className='text-sm text-green-600'>{userCreationStep[index]}</h1> */}
                                       
                         {/* <h5 className='text-center text-[13px] px-5 font-Poppins' onClick={() => setPage(index)}>{userCreationStep[index]}</h5> */}
                     </div>          

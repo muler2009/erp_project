@@ -1,6 +1,8 @@
 import {getCoreRowModel, useReactTable, flexRender, ExpandedState, getFilteredRowModel, getExpandedRowModel, RowSelectionState} from '@tanstack/react-table'
 import { useState } from 'react';
 import Search from '../common/Search';
+import useUserAccount from '../../hooks/useUserAccount';
+import useCreateUserAccount from '../../submodules/managment/user/context/useCreateUserAccount';
 
 interface TableProps {
   columns: any[];
@@ -8,26 +10,19 @@ interface TableProps {
   
 }
 
-interface RowData {
-  custom_group_abbreviation: string,
-  custom_group_name: string,
- 
-}
 
 const GroupTable = ({columns, data}: TableProps) => {
   const [globalFilter, setGlobalFilter] = useState<string | number>('')
   const [expanded, setExpanded] = useState<ExpandedState>({})
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({}) 
-  const [selectedRow, setSelectedRow] = useState<RowData | null>(null);
+  const [values, setValues] = useState([])
+  const { newUserAccount } = useCreateUserAccount()
   
   const handleRowSelectionChange = (newSelectedRow: any) => {
     setRowSelection(newSelectedRow);
   };
 
-
-  console.log(selectedRow)
-
-
+  console.log(rowSelection)
   const table = useReactTable({
         data,
         columns,
@@ -37,11 +32,9 @@ const GroupTable = ({columns, data}: TableProps) => {
           rowSelection
           
         },
-
         enableRowSelection: true,
         onExpandedChange: setExpanded,
-        onRowSelectionChange: handleRowSelectionChange,
-        getSubRows: (row) => row.subRows,
+        onRowSelectionChange: setRowSelection,
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
         getExpandedRowModel: getExpandedRowModel(),
@@ -49,8 +42,6 @@ const GroupTable = ({columns, data}: TableProps) => {
       },      
     )  
 
-   
-   
     return (
       <div className='flex flex-col gap-5'>
         <Search 
@@ -84,7 +75,7 @@ const GroupTable = ({columns, data}: TableProps) => {
             <tbody>
               {table.getRowModel().rows.map((row) => {
                 return (
-                  <tr key={row.id}>
+                  <tr key={row.id} className={`${row.getIsSelected() ? 'Selected' : null}`} onClick={row.getToggleSelectedHandler()}>
                     {row.getVisibleCells().map((cell) => {
                       return (
                         <td key={cell.id}>
@@ -99,21 +90,19 @@ const GroupTable = ({columns, data}: TableProps) => {
           </table>
           <div className=''>
           {/* {newUserAccount?.group?.length} of{' '} */}
-          {
+          {/* {
             table.getSelectedRowModel().flatRows.map((s, index) => (
               <div className='' key={index}>
                 {JSON.stringify(s.original)}
               </div>
             ))
-          }
-           {rowSelection && (
-        <div>
-          <h2>Selected Row</h2>
-          <p>ID: {rowSelection.custom_group_abbreviation}</p>
-          <p>Name: {rowSelection.custom_group_name}</p>
-          {/* Render other properties of the selected row */}
+          } */}
+         <div>
+          <h2>Selected Row: {newUserAccount?.group}</h2>
+         
+          
         </div>
-      )}
+           
         
           </div>
         </div>

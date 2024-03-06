@@ -2,11 +2,13 @@ import React, { useState, useContext } from 'react'
 import { Input, InputWithDesc } from '../../../../components/reusable'
 import { Link } from 'react-router-dom'
 import useCreateUserAccount from '../context/useCreateUserAccount'
+import useUserContext from '../context/useUserContext'
+import CreateUserAccountContext from '../context/CreateUserAccountContext'
 
 
 const UserDetail = () => {
 
-  const { newUserAccount, handleUserCreateInputChanges } = useCreateUserAccount()
+  const { newUserAccount, handleUserCreateInputChanges } = useUserContext()
 
   return (
     <div className='flex flex-col gap-2 px-16'>
@@ -17,17 +19,30 @@ const UserDetail = () => {
                     <p className=' mx-3 text-[13px] text-[#333] text-opacity-50 '>Add single user once with the predefined access type and permission</p>
                 </div>
             </div>
-            <div className='mt-4 w-1/2'>
+            <div className='mt-4 flex space-x-10'>
+               
+                <Input 
+                    label='Email *'
+                    id= 'email_input'
+                    type='text'
+                    placeholder='Email'
+                    name='email'
+                    className='input-md font-Poppins text-[13px]'
+                    value={newUserAccount?.email}
+                    onChange={handleUserCreateInputChanges}
+                />
                 <Input 
                     label='Username *'
                     id= 'username_input'
                     type='text'
                     placeholder='Username'
                     name='username'
-                    className='input-md font-Poppins text-[13px] '
+                    className='input-md font-Poppins text-[13px]'
                     value={newUserAccount?.username}
                     onChange={handleUserCreateInputChanges}
                 />
+
+            
             </div>
         </div>
 
@@ -74,7 +89,7 @@ const UserDetail = () => {
             {/* Access password setting section */}
             <div className='flex-grow pl-2 '>
                 {
-                    newUserAccount.authentication ? (
+                    newUserAccount?.authentication ? (
                         <div className={`flex flex-col gap-3 pt-5 bg-gray-50 px-5 pb-10 border-l ${!newUserAccount.authentication && 'transition duration-800 ease-in-out'}`}>
                             <h1 className='text-[#333] text-opacity-70 text-sm whitespace-nowrap'>Access Password *</h1>
                             <div className='flex flex-col gap-2 flex-grow'>

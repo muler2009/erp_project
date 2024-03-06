@@ -35,6 +35,11 @@ input[type="checkbox"]:checked::before {
   height: 16px;
 }
 
+select[multiple] option:checked {
+  background-color: blue !important;
+  color: white !important;
+}
+
 /* input[type="checkbox"] {
   background-color: white;
   appearance: auto;

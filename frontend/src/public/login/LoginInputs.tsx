@@ -20,8 +20,8 @@ const LoginInputs = () => {
               <img src={erp} className='object-center object-cover w-1/2' />
             </div>
             <div className=''>
-            <h6 className="pb-5 font-Oswald text-[35px] text-center">Hybrid Investment 
-              <span className='text-[30px] ml-3 text-[#02e079]'>Group</span>
+            <h6 className="pb-5 font-Oswald text-[35px] text-center">Identity & Access Management 
+              <span className='text-[30px] ml-3 text-[#02e079]'>(IAM)</span>
             </h6>
             </div>
           </div>

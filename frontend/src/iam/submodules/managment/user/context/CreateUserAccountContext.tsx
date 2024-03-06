@@ -1,22 +1,19 @@
 import React, {createContext} from 'react'
-import useCreateUserAccount, {ContextType} from './useCreateUserAccount'
+import useCreateUserAccount from './useCreateUserAccount'
+import { ContextType } from '../../../../models/user.model';
 
 
 type ChildrenType = {
-    children?: React.ReactElement | undefined
+    children?: React.ReactNode | undefined
 }
 
-
-
-// export const CreateUserAccountContext = createContext<ReturnType<typeof useCreateUserAccount> | undefined>(undefined);
-
-const CreateUserAccountContext = createContext<ContextType | undefined>(undefined);
+export const CreateUserAccountContext = createContext<Partial<ContextType>>({});
 
 export const CreateUserAccountContextProvider = ({ children }: ChildrenType)  => {
-    const userAccountContextValue = useCreateUserAccount();
+    const userAccount = useCreateUserAccount()
   
     return (
-      <CreateUserAccountContext.Provider value={userAccountContextValue}>
+      <CreateUserAccountContext.Provider value={userAccount as ContextType}>
         {children}
       </CreateUserAccountContext.Provider>
     );

@@ -1,4 +1,5 @@
 export interface GroupInterface {
+    id?: number,
     custom_group_abbreviation: string,
     custom_group_name: string,
     group_created_at?: string | undefined,
@@ -17,13 +18,9 @@ export interface GroupColumn extends GroupInterface{
     action?: unknown
 }
 
-export interface GroupAPIResponse {
-    status: number,
-    statusText: string,
-    data: {
-        id: number,
-        groupId: string,
-        groupName: string,
-    }
+export interface GroupAPIResponse extends GroupInterface{
+    status?: number,
+    statusText?: string,
+    data: GroupInterface[]
     
 }

@@ -23,7 +23,7 @@ const CreateNewAccount = ({setIsOpen, isOpen, title} : ModalProps) => {
 
     // const {userAccount, canSave, handleCreateAccInputChange} = useUserAccount()
 
-    const {prevHide, submitHide, nextHide, disableNext, disablePrev, setPage, page, userCreationStep} = useCreateUserAccount()
+    const {prevHide, submitHide, nextHide, disableNext, disablePrev, setPage, page, userCreationStep, newUserAccount} = useCreateUserAccount()
 
 
     const handlePrev = () => setPage(prev => prev - 1)
@@ -36,9 +36,6 @@ const CreateNewAccount = ({setIsOpen, isOpen, title} : ModalProps) => {
         2: <UserCreationSummary />,
         3: <CompleteUserCreation />  
     }
-
-   
-
 
     return isOpen ? (
         <CreateUserAccountContextProvider>
@@ -70,7 +67,7 @@ const CreateNewAccount = ({setIsOpen, isOpen, title} : ModalProps) => {
                                                 </div>
                                                 <div className={`flex flex-col items-start`} >  
                                                     <h1 className='text-sm uppercase'>Step - <span>{index + 1}</span></h1>
-                                                    <h1 className='text-sm text-green-600'>{userCreationStep[index]}</h1>
+                                                    {/* <h1 className='text-sm text-green-600'>{userCreationStep[index]}</h1> */}
                                                                 
                                                     {/* <h5 className='text-center text-[13px] px-5 font-Poppins' onClick={() => setPage(index)}>{userCreationStep[index]}</h5> */}
                                                 </div>          
@@ -78,6 +75,8 @@ const CreateNewAccount = ({setIsOpen, isOpen, title} : ModalProps) => {
                                         )
                                     })
                                 }
+
+                                
                             </div>                        
                             <div className='flex flex-col'>
                                 {display[page]}
@@ -94,7 +93,7 @@ const CreateNewAccount = ({setIsOpen, isOpen, title} : ModalProps) => {
 
                                 <button  className={`btn-sm text-[12px] px-3 py-1 border bg-green-600 text-white hover:bg-[#005bb3] hover:text-white  ${nextHide}`} onClick={handleNext} disabled={disableNext}>
                                     <div className='flex justify-start items-center hover:text-white'>
-                                        <p className='font-Poppins text-[14px]'>Next: <span className='font-bold text-sm'>{userCreationStep[page + 1]}</span></p>
+                                        {/* <p className='font-Poppins text-[14px]'>Next: <span className='font-bold text-sm'>{userCreationStep[page + 1]}</span></p> */}
                                         <GrIcons.GrFormNext size={15} />
                                     </div>
                                 </button>

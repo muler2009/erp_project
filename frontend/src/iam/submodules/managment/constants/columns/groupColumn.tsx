@@ -7,6 +7,7 @@ import Tooltip from "../../../../components/reusable/Tooltip";
 import { useState } from "react";
 import CreateRoles from "../../modals/CreateRoles";
 import useCreateUserAccount from "../../user/context/useCreateUserAccount";
+import { UserGroup } from "../../../../models/user.model";
 
 
 const columnHelper = createColumnHelper<GroupColumn>()
@@ -14,8 +15,39 @@ const columnHelper = createColumnHelper<GroupColumn>()
 interface ActionCellProps {
     info: CellContext<GroupInterface, boolean | string | undefined>;
 }
-  
-  const AddSubGroup: React.FC<ActionCellProps> = ({ info }) => {
+
+
+interface SelectedCellProps {
+  info: CellContext<UserGroup, string | undefined>;
+}
+
+
+const AttachGroupCheckBoxCell = ({ info }: SelectedCellProps ) => {
+    const {setUserNewAccount, handleUserCreateInputChanges, newUserAccount} = useCreateUserAccount()
+   
+    const handleSelectTest =(info: CellContext<UserGroup, string | undefined>)  => {
+        const {custom_group_abbreviation, custom_group_name} = info.row.original
+        console.log("Selected row:", custom_group_abbreviation, custom_group_name);
+        setUserNewAccount(prevData => ({
+            ...prevData,
+            group: info.row.original.custom_group_name
+            
+        }))
+    }
+
+    console.log(newUserAccount?.group)
+   
+    return(
+    <AttachGroupCheckBox
+        checked={info.row.getIsSelected()}
+        disabled={!info.row.getCanSelect()}
+        indeterminate={info.row.getIsSomeSelected()}
+        onChange={() => handleSelectTest(info)}  
+    />
+    )
+}
+
+  const AddSubGroup = ({ info }: ActionCellProps) => {
     const value = info.row.original;
     const [isOpen, setIsOpen] = useState(false);
     return (
@@ -142,18 +174,7 @@ export const GROUP_COLUMN_WITH_SELECTION = [
                 />
             )
         },
-        //cell: (info: CellContext<GroupInterface, | undefined>) => <AttachGroupCheckBoxCell info={info} />,
-        cell: ({row}) => {
-          return(
-            <AttachGroupCheckBox
-              checked={row.getIsSelected()}
-              disabled={!row.getCanSelect()}
-              indeterminate={row.getIsSomeSelected()}
-              onChange={row.getToggleSelectedHandler()}
-              
-          />
-          )
-        }
+        cell: (info: CellContext<UserGroup, | string | undefined>) => <AttachGroupCheckBoxCell info={info} />,
       },
           
     ),
